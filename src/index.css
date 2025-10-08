@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* O.C.E.A.N Design System - Sharks Team Identity */
+    /* Deep Ocean Purple - Primary brand color */
+    --background: 261 59% 27%;
+    --foreground: 270 20% 98%;
+
+    /* Card with glassmorphism effect */
+    --card: 261 50% 20%;
+    --card-foreground: 270 20% 98%;
+
+    --popover: 261 50% 20%;
+    --popover-foreground: 270 20% 98%;
+
+    /* Vibrant Lilac - Primary accent */
+    --primary: 265 100% 74%;
+    --primary-foreground: 261 59% 10%;
+
+    /* Ocean Blue - Secondary */
+    --secondary: 220 100% 65%;
+    --secondary-foreground: 270 20% 98%;
+
+    /* Muted surfaces */
+    --muted: 261 40% 30%;
+    --muted-foreground: 270 10% 70%;
+
+    /* Vibrant Orange - Call to action */
+    --accent: 28 100% 50%;
+    --accent-foreground: 270 20% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 270 20% 98%;
+
+    --border: 261 30% 35%;
+    --input: 261 30% 25%;
+    --ring: 265 100% 74%;
+
+    --radius: 0.75rem;
+
+    /* Custom gradients */
+    --gradient-ocean: linear-gradient(135deg, hsl(261 59% 27%), hsl(220 100% 35%));
+    --gradient-lilac-orange: linear-gradient(135deg, hsl(265 100% 74%), hsl(28 100% 50%));
+    --gradient-deep: linear-gradient(180deg, hsl(261 59% 27%), hsl(261 59% 15%));
+    
+    /* Glassmorphism effects */
+    --glass-bg: hsla(261, 50%, 20%, 0.7);
+    --glass-border: hsla(265, 100%, 74%, 0.2);
+    
+    /* Shadows with color */
+    --shadow-lilac: 0 10px 40px -10px hsla(265, 100%, 74%, 0.3);
+    --shadow-orange: 0 10px 40px -10px hsla(28, 100%, 50%, 0.3);
+    --shadow-deep: 0 20px 60px -15px hsla(261, 59%, 10%, 0.5);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Wave animation for backgrounds */
+  @keyframes wave {
+    0%, 100% {
+      transform: translateY(0) translateX(0);
+    }
+    25% {
+      transform: translateY(-10px) translateX(10px);
+    }
+    50% {
+      transform: translateY(0) translateX(20px);
+    }
+    75% {
+      transform: translateY(10px) translateX(10px);
+    }
+  }
+
+  /* Floating animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  /* Glow pulse */
+  @keyframes glow-pulse {
+    0%, 100% {
+      box-shadow: 0 0 20px hsla(265, 100%, 74%, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px hsla(265, 100%, 74%, 0.6);
+    }
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+  }
+
+  .gradient-ocean {
+    background: var(--gradient-ocean);
+  }
+
+  .gradient-lilac-orange {
+    background: var(--gradient-lilac-orange);
+  }
+
+  .shadow-lilac {
+    box-shadow: var(--shadow-lilac);
+  }
+
+  .shadow-orange {
+    box-shadow: var(--shadow-orange);
+  }
+
+  .animate-wave {
+    animation: wave 8s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+}
