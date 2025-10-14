@@ -1,13 +1,29 @@
+<<<<<<< HEAD
 import { useState } from "react";
+=======
+import { useEffect, useState } from "react";
+>>>>>>> 1f82535 (update 14-10-2025)
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Waves, Mail, Lock, User } from "lucide-react";
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 
 const Auth = () => {
+=======
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import Cookies from "js-cookie";
+import api from "../services/api";
+
+
+
+const Auth = () => {
+  const navigate = useNavigate();
+>>>>>>> 1f82535 (update 14-10-2025)
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
     name: "",
@@ -15,6 +31,7 @@ const Auth = () => {
     password: "",
   });
 
+<<<<<<< HEAD
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -23,11 +40,75 @@ const Auth = () => {
         description: "Welcome back to O.C.E.A.N",
       });
     } else {
+=======
+  useEffect(() => {
+    const token = Cookies.get("x-token");
+    if (token) {
+      navigate("/my-library");
+    }
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (isLogin) {
+
+      try {
+        const response = await api.post('/auth/login', {
+          email: formData.email,
+          password: formData.password
+        });
+        Cookies.set("x-token", response.data.token, { expires: 1 });
+        toast.success("Login successful!", {
+          description: "Welcome back to O.C.E.A.N",
+        });
+        navigate("/my-library");
+      } catch (error: any) {
+        console.error("There was an error!", error);
+        toast.error("Login failed!", {
+          description: "Please check your credentials and try again.",
+        });
+      }
+    } else {
+      try {
+        const response = await api.post('/user', {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password
+        }).then(async () => {
+          await api.post('/auth/login', {
+            email: formData.email,
+            password: formData.password
+          }).then(async (loginResponse) => {
+            Cookies.set("x-token", loginResponse.data.token, { expires: 1 });
+            toast.success("Login successful!", {
+              description: "Welcome back to O.C.E.A.N",
+            });
+            navigate("/my-library");
+          });
+
+
+        });
+      } catch (error: any) {
+        console.error("There was an error!", error);
+        toast.error("Registration failed!", {
+          description: "Please check your details and try again.",
+        });
+        return;
+      }
+>>>>>>> 1f82535 (update 14-10-2025)
       toast.success("Account created!", {
         description: "Welcome to O.C.E.A.N",
       });
     }
   };
+<<<<<<< HEAD
+=======
+  const signUp = () => {
+    setIsLogin(!isLogin);
+  }
+
+>>>>>>> 1f82535 (update 14-10-2025)
 
   return (
     <div className="min-h-screen flex items-center justify-center py-20 px-4 relative overflow-hidden">
@@ -120,7 +201,11 @@ const Auth = () => {
             )}
 
             <Button type="submit" variant="hero" className="w-full" size="lg">
+<<<<<<< HEAD
               {isLogin ? "Sign In" : "Create Account"}
+=======
+              Sign In
+>>>>>>> 1f82535 (update 14-10-2025)
             </Button>
 
             <div className="relative my-6">
@@ -161,7 +246,11 @@ const Auth = () => {
             </span>{" "}
             <button
               type="button"
+<<<<<<< HEAD
               onClick={() => setIsLogin(!isLogin)}
+=======
+              onClick={() => signUp()}
+>>>>>>> 1f82535 (update 14-10-2025)
               className="text-primary hover:underline font-medium"
             >
               {isLogin ? "Sign up" : "Sign in"}
