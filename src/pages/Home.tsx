@@ -26,7 +26,7 @@ const Home = () => {
           <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-primary/30 mb-4">
               <Waves className="h-4 w-4 text-primary animate-pulse" />
-              <span className="text-sm font-medium">Sharks Team Presents</span>
+              <span className="text-sm font-medium">A Equipe SHARKS apresenta</span>
             </div>
 
             <h1 className="text-5xl leading-tight text-slate-300 text-center font-bold md:text-7xl">
@@ -40,19 +40,19 @@ const Home = () => {
             </p>
 
             <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
-              A modern collaborative library for archaeological artifact documentation. 
-              Dive deep into history with organized, accessible, and beautifully presented collections from around the world.
+              Uma biblioteca moderna e colaborativa para a documentação de artefatos arqueológicos.
+              Mergulhe fundo na história com coleções apresentadas de uma maneira organizada, acessível e agradável por todo o mundo.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
               <Button variant="hero" size="lg" asChild>
                 <Link to="/libraries" className="group">
-                  Explore Libraries
+                  Explorar bibliotecas
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
               <Button variant="glass" size="lg" asChild>
-                <Link to="/about">Learn More</Link>
+                <Link to="/about">Conheça mais</Link>
               </Button>
             </div>
           </div>
@@ -71,7 +71,7 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Why Choose <span className="text-primary">O.C.E.A.N?</span>
+              Por que escolher <span className="text-primary">O.C.E.A.N?</span>
             </h2>
             <p className="max-w-2xl mx-auto text-gray-100">
               Revolutionary features designed for modern archaeological documentation

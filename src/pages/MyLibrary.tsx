@@ -1,67 +1,12 @@
-<<<<<<< HEAD
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-=======
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
->>>>>>> 1f82535 (update 14-10-2025)
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Plus, Save, Trash2, Eye, FileDown } from "lucide-react";
 import { toast } from "sonner";
-<<<<<<< HEAD
-
-interface Artifact {
-  id: string;
-  identificationNumber: string;
-  name: string;
-  description: string;
-  provenance: string;
-  dating: string;
-  observations: string;
-  createdAt: string;
-}
-
-const MyLibrary = () => {
-  const [artifacts, setArtifacts] = useState<Artifact[]>([]);
-  const [isFormOpen, setIsFormOpen] = useState(false);
-  const [formData, setFormData] = useState({
-    identificationNumber: "",
-    name: "",
-    description: "",
-    provenance: "",
-    dating: "",
-    observations: "",
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    const newArtifact: Artifact = {
-      id: Date.now().toString(),
-      ...formData,
-      createdAt: new Date().toLocaleDateString(),
-    };
-
-    setArtifacts([newArtifact, ...artifacts]);
-    setFormData({
-      identificationNumber: "",
-      name: "",
-      description: "",
-      provenance: "",
-      dating: "",
-      observations: "",
-    });
-    setIsFormOpen(false);
-    
-    toast.success("Artifact saved successfully!", {
-      description: `${formData.name} has been added to your library.`,
-=======
 import { Link } from "react-router-dom";
 import api from "../services/api"
 
@@ -286,18 +231,12 @@ const MyLibrary = () => {
 
     toast.success("Artifact saved successfully!", {
       description: `${formLData.name} has been added to your library.`,
->>>>>>> 1f82535 (update 14-10-2025)
     });
   };
 
   const handleDelete = (id: string) => {
-<<<<<<< HEAD
-    setArtifacts(artifacts.filter((a) => a.id !== id));
-    toast.success("Artifact deleted");
-=======
     setLibraries(libraries.filter((a) => a.id !== id));
     toast.success("Library deleted");
->>>>>>> 1f82535 (update 14-10-2025)
   };
 
   const handleExport = () => {
@@ -322,28 +261,13 @@ const MyLibrary = () => {
               <FileDown className="h-4 w-4" />
               Export
             </Button>
-<<<<<<< HEAD
-            <Button variant="hero" onClick={() => setIsFormOpen(!isFormOpen)}>
-              <Plus className="h-4 w-4" />
-              {isFormOpen ? "Close Form" : "New Artifact"}
-=======
             <Button variant="hero" onClick={newLibrary}>
               <Plus className="h-4 w-4" />
               {isFormLOpen ? "Close Form" : "New Library"}
->>>>>>> 1f82535 (update 14-10-2025)
             </Button>
           </div>
         </div>
 
-<<<<<<< HEAD
-        {/* Add Artifact Form */}
-        {isFormOpen && (
-          <Card className="glass-card border-primary/20 mb-8 animate-fade-in">
-            <CardHeader>
-              <CardTitle>Add New Artifact</CardTitle>
-              <CardDescription>
-                Fill in the details below to document a new artifact
-=======
         {/* Add Library Form */}
         {isFormLOpen && (
           <Card ref={formRef} className="glass-card border-primary/20 mb-8 animate-fade-in">
@@ -351,7 +275,6 @@ const MyLibrary = () => {
               <CardTitle>Add New Library</CardTitle>
               <CardDescription>
                 Fill in the details below to document a new library artifact
->>>>>>> 1f82535 (update 14-10-2025)
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -365,15 +288,9 @@ const MyLibrary = () => {
                     <Input
                       id="id-number"
                       required
-<<<<<<< HEAD
-                      value={formData.identificationNumber}
-                      onChange={(e) =>
-                        setFormData({ ...formData, identificationNumber: e.target.value })
-=======
                       value={formLData.vid}
                       onChange={(e) =>
                         setFormLData({ ...formLData, vid: e.target.value })
->>>>>>> 1f82535 (update 14-10-2025)
                       }
                       placeholder="e.g., AR-2024-001"
                       className="bg-background/50 border-primary/20"
@@ -383,22 +300,13 @@ const MyLibrary = () => {
                   {/* Name */}
                   <div className="space-y-2">
                     <Label htmlFor="name">
-<<<<<<< HEAD
-                      Artifact Name <span className="text-destructive">*</span>
-=======
                       Library Name <span className="text-destructive">*</span>
->>>>>>> 1f82535 (update 14-10-2025)
                     </Label>
                     <Input
                       id="name"
                       required
-<<<<<<< HEAD
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-=======
                       value={formLData.name}
                       onChange={(e) => setFormLData({ ...formLData, name: e.target.value })}
->>>>>>> 1f82535 (update 14-10-2025)
                       placeholder="e.g., Ceramic Bowl"
                       className="bg-background/50 border-primary/20"
                     />
@@ -413,73 +321,13 @@ const MyLibrary = () => {
                   <Textarea
                     id="description"
                     required
-<<<<<<< HEAD
-                    value={formData.description}
-                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-=======
                     value={formLData.description}
                     onChange={(e) => setFormLData({ ...formLData, description: e.target.value })}
->>>>>>> 1f82535 (update 14-10-2025)
                     placeholder="Size, shape, material, state of conservation..."
                     rows={4}
                     className="bg-background/50 border-primary/20"
                   />
                 </div>
-<<<<<<< HEAD
-
-                {/* Provenance */}
-                <div className="space-y-2">
-                  <Label htmlFor="provenance">
-                    Provenance <span className="text-destructive">*</span>
-                  </Label>
-                  <Textarea
-                    id="provenance"
-                    required
-                    value={formData.provenance}
-                    onChange={(e) => setFormData({ ...formData, provenance: e.target.value })}
-                    placeholder="Excavation site, coordinates, archaeological context..."
-                    rows={3}
-                    className="bg-background/50 border-primary/20"
-                  />
-                </div>
-
-                {/* Dating */}
-                <div className="space-y-2">
-                  <Label htmlFor="dating">
-                    Dating <span className="text-destructive">*</span>
-                  </Label>
-                  <Input
-                    id="dating"
-                    required
-                    value={formData.dating}
-                    onChange={(e) => setFormData({ ...formData, dating: e.target.value })}
-                    placeholder="Method used and estimated period"
-                    className="bg-background/50 border-primary/20"
-                  />
-                </div>
-
-                {/* Observations */}
-                <div className="space-y-2">
-                  <Label htmlFor="observations">Additional Observations</Label>
-                  <Textarea
-                    id="observations"
-                    value={formData.observations}
-                    onChange={(e) => setFormData({ ...formData, observations: e.target.value })}
-                    placeholder="Any additional notes or observations..."
-                    rows={3}
-                    className="bg-background/50 border-primary/20"
-                  />
-                </div>
-
-                <div className="flex gap-3 justify-end">
-                  <Button type="button" variant="outline" onClick={() => setIsFormOpen(false)}>
-                    Cancel
-                  </Button>
-                  <Button type="submit" variant="hero">
-                    <Save className="h-4 w-4" />
-                    Save Artifact
-                  </Button>
-=======
                 <div className="grid md:grid-cols-3 gap-6">
                   {/* City */}
                   <div className="space-y-2">
@@ -568,17 +416,12 @@ const MyLibrary = () => {
                       Update Library
                     </Button>
                   }
->>>>>>> 1f82535 (update 14-10-2025)
                 </div>
               </form>
             </CardContent>
           </Card>
         )}
 
-<<<<<<< HEAD
-        {/* Artifacts List */}
-        {artifacts.length === 0 ? (
-=======
         {/* Add Artifact Form */}
         {isFormAOpen && (
           <Card ref={formRef} className="glass-card border-primary/20 mb-8 animate-fade-in">
@@ -853,22 +696,12 @@ const MyLibrary = () => {
 
         {/* Library List */}
         {libraries.length === 0 ? (
->>>>>>> 1f82535 (update 14-10-2025)
           <Card className="glass-card border-primary/20 animate-fade-in">
             <CardContent className="py-20 text-center">
               <div className="max-w-md mx-auto space-y-4">
                 <div className="w-16 h-16 mx-auto bg-primary/20 rounded-full flex items-center justify-center">
                   <Plus className="h-8 w-8 text-primary" />
                 </div>
-<<<<<<< HEAD
-                <h3 className="text-xl font-semibold">No artifacts yet</h3>
-                <p className="text-muted-foreground">
-                  Start documenting your collection by adding your first artifact
-                </p>
-                <Button variant="hero" onClick={() => setIsFormOpen(true)}>
-                  <Plus className="h-4 w-4" />
-                  Add First Artifact
-=======
                 <h3 className="text-xl font-semibold">No libraries yet</h3>
                 <p className="text-muted-foreground">
                   Start documenting your collection by adding your first library
@@ -876,7 +709,6 @@ const MyLibrary = () => {
                 <Button variant="hero" onClick={() => setIsFormLOpen(true)}>
                   <Plus className="h-4 w-4" />
                   Add First Library
->>>>>>> 1f82535 (update 14-10-2025)
                 </Button>
               </div>
             </CardContent>
@@ -885,15 +717,6 @@ const MyLibrary = () => {
           <div className="space-y-4">
             <div className="flex items-center justify-between mb-4">
               <p className="text-muted-foreground">
-<<<<<<< HEAD
-                {artifacts.length} {artifacts.length === 1 ? "artifact" : "artifacts"} in your library
-              </p>
-            </div>
-            
-            {artifacts.map((artifact, index) => (
-              <Card
-                key={artifact.id}
-=======
                 {libraries.length} {libraries.length === 1 ? "library" : "libraries"} in your account
               </p>
             </div>
@@ -901,7 +724,6 @@ const MyLibrary = () => {
             {libraries.map((library, index) => (
               <Card
                 key={library.id}
->>>>>>> 1f82535 (update 14-10-2025)
                 className="glass-card border-primary/20 hover:border-primary/40 transition-all group animate-fade-in"
                 style={{ animationDelay: `${index * 0.05}s` }}
               >
@@ -909,17 +731,10 @@ const MyLibrary = () => {
                   <div className="flex justify-between items-start">
                     <div>
                       <CardTitle className="group-hover:text-primary transition-colors">
-<<<<<<< HEAD
-                        {artifact.name}
-                      </CardTitle>
-                      <CardDescription className="mt-1">
-                        ID: {artifact.identificationNumber} • Added {artifact.createdAt}
-=======
                         {library.name}
                       </CardTitle>
                       <CardDescription className="mt-1">
                         ID: {library.vid} • Added {parseDate(library.createdAt)}
->>>>>>> 1f82535 (update 14-10-2025)
                       </CardDescription>
                     </div>
                     <div className="flex gap-2">
@@ -929,11 +744,7 @@ const MyLibrary = () => {
                       <Button
                         variant="ghost"
                         size="icon"
-<<<<<<< HEAD
-                        onClick={() => handleDelete(artifact.id)}
-=======
                         onClick={() => handleDelete(library.id)}
->>>>>>> 1f82535 (update 14-10-2025)
                       >
                         <Trash2 className="h-4 w-4 text-destructive" />
                       </Button>
@@ -941,28 +752,6 @@ const MyLibrary = () => {
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-3">
-<<<<<<< HEAD
-                  <div>
-                    <p className="text-sm font-semibold text-muted-foreground">Description</p>
-                    <p className="text-sm">{artifact.description}</p>
-                  </div>
-                  <div className="grid md:grid-cols-2 gap-3">
-                    <div>
-                      <p className="text-sm font-semibold text-muted-foreground">Provenance</p>
-                      <p className="text-sm">{artifact.provenance}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-muted-foreground">Dating</p>
-                      <p className="text-sm">{artifact.dating}</p>
-                    </div>
-                  </div>
-                  {artifact.observations && (
-                    <div>
-                      <p className="text-sm font-semibold text-muted-foreground">Observations</p>
-                      <p className="text-sm">{artifact.observations}</p>
-                    </div>
-                  )}
-=======
                   <div className="flex justify-center items-center mb-4 pt-4"><img className="max-w-full h-auto" src={`http://lorempixel.com.br/600/320/${library.id}`} /></div>
                   <div>
                     <p className="text-sm font-semibold text-muted-foreground">Description</p>
@@ -994,18 +783,13 @@ const MyLibrary = () => {
                   </div>
 
 
->>>>>>> 1f82535 (update 14-10-2025)
                 </CardContent>
               </Card>
             ))}
           </div>
         )}
       </div>
-<<<<<<< HEAD
-    </div>
-=======
     </div >
->>>>>>> 1f82535 (update 14-10-2025)
   );
 };
 

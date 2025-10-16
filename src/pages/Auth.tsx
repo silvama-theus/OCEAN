@@ -1,19 +1,9 @@
-<<<<<<< HEAD
-import { useState } from "react";
-=======
 import { useEffect, useState } from "react";
->>>>>>> 1f82535 (update 14-10-2025)
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Waves, Mail, Lock, User } from "lucide-react";
-<<<<<<< HEAD
-import { Link } from "react-router-dom";
-import { toast } from "sonner";
-
-const Auth = () => {
-=======
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import Cookies from "js-cookie";
@@ -23,7 +13,6 @@ import api from "../services/api";
 
 const Auth = () => {
   const navigate = useNavigate();
->>>>>>> 1f82535 (update 14-10-2025)
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
     name: "",
@@ -31,16 +20,6 @@ const Auth = () => {
     password: "",
   });
 
-<<<<<<< HEAD
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (isLogin) {
-      toast.success("Login successful!", {
-        description: "Welcome back to O.C.E.A.N",
-      });
-    } else {
-=======
   useEffect(() => {
     const token = Cookies.get("x-token");
     if (token) {
@@ -96,19 +75,15 @@ const Auth = () => {
         });
         return;
       }
->>>>>>> 1f82535 (update 14-10-2025)
       toast.success("Account created!", {
         description: "Welcome to O.C.E.A.N",
       });
     }
   };
-<<<<<<< HEAD
-=======
   const signUp = () => {
     setIsLogin(!isLogin);
   }
 
->>>>>>> 1f82535 (update 14-10-2025)
 
   return (
     <div className="min-h-screen flex items-center justify-center py-20 px-4 relative overflow-hidden">
@@ -201,11 +176,7 @@ const Auth = () => {
             )}
 
             <Button type="submit" variant="hero" className="w-full" size="lg">
-<<<<<<< HEAD
-              {isLogin ? "Sign In" : "Create Account"}
-=======
               Sign In
->>>>>>> 1f82535 (update 14-10-2025)
             </Button>
 
             <div className="relative my-6">
@@ -246,11 +217,7 @@ const Auth = () => {
             </span>{" "}
             <button
               type="button"
-<<<<<<< HEAD
-              onClick={() => setIsLogin(!isLogin)}
-=======
               onClick={() => signUp()}
->>>>>>> 1f82535 (update 14-10-2025)
               className="text-primary hover:underline font-medium"
             >
               {isLogin ? "Sign up" : "Sign in"}
