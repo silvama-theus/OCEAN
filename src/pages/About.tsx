@@ -23,26 +23,27 @@ const About = () => {
           {/* Meaning Section */}
           <Card className="glass-card border-primary/20 animate-fade-in">
             <CardHeader>
-              <CardTitle className="text-2xl">What Does O.C.E.A.N Mean?</CardTitle>
+              <CardTitle className="text-2xl">O que signfica O.C.E.A.N?</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-muted-foreground">
               <p>
-                <strong className="text-foreground">O.C.E.A.N</strong> stands for{" "}
+                <strong className="text-foreground">O.C.E.A.N</strong> é uma sigla para{" "}
                 <strong className="text-primary">
                   Organized Collection of Exploration and Artifact Network
                 </strong>
-                , which in Portuguese translates to{" "}
+                , que signfica em português{" "}
                 <em>"Coleção Organizada de Exploração e Rede de Artefatos"</em>.
               </p>
               <p>
-                The name was carefully chosen to reflect our connection with the{" "}
-                <strong className="text-secondary">Sharks Team</strong>, symbolizing the depth and vast
-                knowledge of the ocean. Just as the ocean holds countless mysteries waiting to be discovered,
-                our platform serves as a gateway to the treasures of human history.
+                O nome foi escolhido para refletir uma conexão com o nome da nossa equipe Sharks e com nosso projeto{" "}
+                <strong className="text-secondary">Sharks Team</strong>, simbolizando a profundidade e o vasto conhecimento do oceano. 
+                Assim como o oceano guarda inúmeros mistérios esperando para serem descobertos, 
+                nossa plataforma serve como uma porta de entrada para os tesouros da história humana.
+.
               </p>
               <p>
-                Like sharks navigating the depths with precision and purpose, we help archaeologists and
-                researchers navigate through vast collections of artifacts with organization and clarity.
+                Como tubarões navegando nas profundezas com precisão e propósito, 
+                ajudamos arqueólogos e pesquisadores a navegar por vastas coleções de artefatos com organização e clareza.
               </p>
             </CardContent>
           </Card>
@@ -53,13 +54,12 @@ const About = () => {
               <CardHeader>
                 <div className="flex items-center gap-3 mb-2">
                   <Target className="h-8 w-8 text-accent" />
-                  <CardTitle className="text-xl">Our Mission</CardTitle>
+                  <CardTitle className="text-xl">Nossa missão</CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="text-muted-foreground">
                 <p>
-                  To revolutionize archaeological documentation by providing a modern, accessible, and
-                  collaborative platform that preserves our shared cultural heritage for future generations.
+                   Revolucionar a documentação arqueológica com uma plataforma moderna, acessível, e colaborativa que preserva nossa cultura para as nossas gerações futuras. 
                 </p>
               </CardContent>
             </Card>
@@ -68,13 +68,13 @@ const About = () => {
               <CardHeader>
                 <div className="flex items-center gap-3 mb-2">
                   <Eye className="h-8 w-8 text-secondary" />
-                  <CardTitle className="text-xl">Our Vision</CardTitle>
+                  <CardTitle className="text-xl">Nossa visão</CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="text-muted-foreground">
                 <p>
-                  To become the world's leading platform for archaeological artifact documentation, connecting
-                  researchers globally and making history accessible to everyone.
+                  Tornar-se a plataforma líder mundial em documentação de artefatos arqueológicos, conectando pesquisadores globalmente e 
+                  tornando a história acessível a todos.
                 </p>
               </CardContent>
             </Card>
@@ -83,33 +83,31 @@ const About = () => {
           {/* Impact Section */}
           <Card className="glass-card border-primary/20 animate-fade-in">
             <CardHeader>
-              <CardTitle className="text-2xl">Global Impact</CardTitle>
+              <CardTitle className="text-2xl">Impacto Global</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-muted-foreground">
               <p>
-                O.C.E.A.N addresses a critical need in the archaeological community: the lack of standardized,
-                modern tools for artifact documentation. Our platform enables:
+                O O.C.E.A.N atende a uma necessidade da comunidade arqueológica: 
+                a falta de ferramentas padronizadas e modernas para documentação de artefatos. Nossa plataforma permite:
               </p>
               <ul className="space-y-2 ml-6 list-disc">
                 <li>
-                  <strong className="text-foreground">Standardization</strong>: Consistent documentation
-                  practices across institutions and countries
+                  <strong className="text-foreground">Padronização</strong>: práticas de documentação consistentes entre instituições e países
                 </li>
                 <li>
-                  <strong className="text-foreground">Accessibility</strong>: Cloud-based access to collections
-                  from anywhere in the world
+                  <strong className="text-foreground">Acessibilidade</strong>: Você poderá acessar nossa plataforma 
+                  e as coleções em qualquer lugar
+                  
                 </li>
                 <li>
-                  <strong className="text-foreground">Collaboration</strong>: Connecting researchers and
-                  institutions to share knowledge
+                  <strong className="text-foreground">Colaboração</strong>: Conectando pesquisadores e instituições para compartilhar conhecimento
                 </li>
                 <li>
-                  <strong className="text-foreground">Preservation</strong>: Digital records that protect
-                  knowledge for future generations
+                  <strong className="text-foreground">Preservação</strong>: Os dados do artefato serão preservados para futuras gerações
                 </li>
                 <li>
-                  <strong className="text-foreground">Education</strong>: Making archaeological discoveries
-                  accessible to students and the public
+                  <strong className="text-foreground">Educação</strong>: Tornando descobertas arqueológicas
+                  accessiveis para estudantes e para o público
                 </li>
               </ul>
             </CardContent>
@@ -120,19 +118,19 @@ const About = () => {
             <CardHeader>
               <div className="flex items-center gap-3 mb-2">
                 <Users className="h-8 w-8 text-primary" />
-                <CardTitle className="text-2xl">The Sharks Team</CardTitle>
+                <CardTitle className="text-2xl">A equipe Sharks</CardTitle>
               </div>
             </CardHeader>
             <CardContent className="space-y-4 text-muted-foreground">
               <p>
-                O.C.E.A.N is proudly developed by the <strong className="text-secondary">Sharks Team</strong>,
-                a group of passionate developers, designers, and archaeology enthusiasts committed to using
-                technology to preserve and share human history.
+                 O O.C.E.A.N foi desenvolvido pela nossa equipe <strong className="text-secondary">Sharks</strong>,
+                um grupo de estudantes que competem na FLL, em busca de promover aos arqueológos uma documentação mais eficiente através da tecnologia, 
+                com o intuito de ajuda-los nesse trabalho.
+                
               </p>
               <p>
-                Our diverse team brings together expertise in software development, user experience design,
-                and archaeological sciences to create a platform that truly serves the needs of the global
-                research community.
+                Juntos, nossa equipe desenvolveu um software que cumpre nosso objetivo: 
+                atender a necessidade dos arqueólogos em busca de simplificar seu trabalho.
               </p>
               <div className="pt-4 border-t border-primary/20">
                 <p className="text-sm">
@@ -145,10 +143,10 @@ const About = () => {
           {/* Closing Statement */}
           <div className="text-center py-12 glass-card rounded-2xl border border-primary/20 animate-fade-in">
             <p className="text-lg text-foreground max-w-2xl mx-auto px-6">
-              "By connecting science, innovation, and culture in one ocean of knowledge, we're not just
-              documenting the past — we're preserving it for the future."
+              "Conectando a ciência, inovação, e cultura em um oceano de conhecimento, nós não estamos apenas
+              documentando o passado — nós estamos preservando nossa história para o futuro."
             </p>
-            <p className="text-sm text-primary mt-4 font-semibold">— The Sharks Team</p>
+            <p className="text-sm text-primary mt-4 font-semibold">— Equipe Sharks</p>
           </div>
         </div>
       </div>

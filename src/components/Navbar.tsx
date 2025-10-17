@@ -19,11 +19,11 @@ export const Navbar = () => {
     setToken(Cookie.get("x-token"));
   }, []);
   const navLinks = [
-    { path: "/", label: "Home" },
-    { path: "/libraries", label: "Libraries" },
-    { path: "/artifacts", label: "Arifacts" },
-    { path: "/my-library", label: "My Library" },
-    { path: "/about", label: "About" },
+    { path: "/", label: "Página inicial" },
+    { path: "/libraries", label: "Biblioteca" },
+    { path: "/artifacts", label: "Artefatos" },
+    { path: "/my-library", label: "Minha biblioteca" },
+    { path: "/about", label: "Sobre" },
   ];
 
   return (
@@ -65,7 +65,7 @@ export const Navbar = () => {
                 </Button>
               ) : (
                 <Button variant="hero" size="sm" asChild>
-                  <Link to="/auth">Get Started</Link>
+                  <Link to="/auth">Faça seu login</Link>
                 </Button>
               )
             }

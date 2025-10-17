@@ -74,23 +74,23 @@ const Home = () => {
               Por que escolher <span className="text-primary">O.C.E.A.N?</span>
             </h2>
             <p className="max-w-2xl mx-auto text-gray-100">
-              Revolutionary features designed for modern archaeological documentation
+              Recursos revulocionários designados para uma documentação de arqueologia moderna
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[{
             icon: Database,
-            title: "Organized Documentation",
-            description: "Standardized forms and templates ensure consistent, professional artifact cataloging across all collections."
+            title: "Documentação Organizada",
+            description: "Formulários e modelos padronizados garantem uma catalogação de artefatos consistente e profissional em todas as coleções.."
           }, {
             icon: Users,
-            title: "Global Collaboration",
-            description: "Connect with archaeologists and institutions worldwide. Share discoveries and build collective knowledge."
+            title: "Colaboração Global",
+            description: "Relacione-se com arqueólogos e instituições de todo mundo. Compartilhe descobertas e construa conhecimento coletivo."
           }, {
             icon: Globe,
-            title: "Accessible Anywhere",
-            description: "Cloud-based platform accessible from any device. Your research, always at your fingertips."
+            title: "Acesse de onde estiver",
+            description: "Plataforma acessível de qualquer dispositivo. Sua pesquisa, sempre na palma da sua mão."
           }].map((feature, index) => <div key={index} className="glass-card p-8 rounded-2xl hover:scale-105 transition-all duration-300 group animate-fade-in" style={{
             animationDelay: `${index * 0.1}s`
           }}>
@@ -113,14 +113,14 @@ const Home = () => {
             
             <div className="relative z-10">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Ready to Dive In?
+                Preparado para explorar?
               </h2>
               <p className="text-lg mb-8 max-w-2xl mx-auto text-gray-200">
-                Join archaeologists and institutions from around the world in preserving our shared cultural heritage.
+                Conecte-se com arqueólogos e instituições ao redor do mundo para a preservação e compartilhamento da nossa herança cultural.
               </p>
               <Button variant="hero" size="lg" asChild>
                 <Link to="/auth" className="group">
-                  Start Your Journey
+                  Inicie sua jornada
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>

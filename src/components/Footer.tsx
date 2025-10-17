@@ -13,13 +13,13 @@ export const Footer = () => {
               </span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Preserving history through modern technology. A Sharks Team project.
+              Preservando a história com a tecnologia moderna junto da equipe Sharks.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold mb-4 text-primary">Quick Links</h3>
+            <h3 className="font-semibold mb-4 text-primary">Acesso rápido</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
@@ -41,11 +41,12 @@ export const Footer = () => {
 
           {/* Contact */}
           <div className="mx-0 px-0">
-            <h3 className="font-semibold mb-4 text-primary">  Contact</h3>
+            <h3 className="font-semibold mb-4 text-primary">  Contato</h3>
             <ul className="space-y-2">
               <li className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Mail className="h-4 w-4" />
-                <span>equipetaubatesharks@gmail.com
+                <span>equipetaubatesharks@gmail.com 
+                  sharksfll_12476
               </span>
               </li>
             </ul>
@@ -53,7 +54,7 @@ export const Footer = () => {
 
           {/* Social */}
           <div className="px-[15px]">
-            <h3 className="font-semibold mb-4 text-primary">Follow Us</h3>
+            <h3 className="font-semibold mb-4 text-primary">Nos acompanhe</h3>
             <div className="flex gap-4">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
                 <Github className="h-5 w-5" />
@@ -67,7 +68,7 @@ export const Footer = () => {
 
         <div className="border-t border-primary/20 mt-8 pt-8 text-center">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} O.C.E.A.N - Sharks Team. All rights reserved.
+            © {new Date().getFullYear()} O.C.E.A.N - Equipe Sharks. Todos os direitos reservados.
           </p>
         </div>
       </div>

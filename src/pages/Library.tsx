@@ -24,7 +24,7 @@ const Library = () => {
     try {
       //await api.delete(`/library/${id}`);
       // Optionally, you can add code to update the UI after deletion
-      console.log("Library deleted successfully");
+      console.log("Biblioteca deletada com sucesso");
     } catch (error) {
       console.error("Error deleting library:", error);
     }

@@ -44,7 +44,7 @@ const Artifact = () => {
         <Card className="p-8" key={artifact.id}>
           <div className="flex justify-center items-center mb-4"><img className="max-w-full h-auto" src={artifact.imagePath} /></div>
           <CardDescription className="space-y-2 p-8 text-justify">
-            <p><span className="font-bold">Era: </span>{artifact.age}</p>
+            <p><span className="font-bold">Idade: </span>{artifact.age}</p>
             <p><span className="font-bold">Onde foi encontrado:</span> {artifact.coordinates} | {artifact.foundPlace}</p>
             <p><span className="font-bold">Contexto histórico: </span> {artifact.historicalContext}</p>
             <p><span className="font-bold">Origem ou utilidade:</span> {artifact.origin_or_utility}</p>
