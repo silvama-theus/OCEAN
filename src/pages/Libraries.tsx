@@ -86,7 +86,7 @@ const Libraries = () => {
             <Link to={`/library/${library.id}`} key={library.id} className="w-full">
               <Card className="max-w-sm p-8 hover:bg-sky-700 cursor-pointer" >
                 <CardTitle className="mb-6 ">{library.name}</CardTitle>
-                <div className="flex justify-center items-center mb-4"><img className="max-w-full h-auto" src={`http://lorempixel.com.br/300/300/${index}`} /></div>
+                <div className="flex justify-center items-center mb-4"><img className="max-w-full h-auto" src={library.imagePath} /></div>
                 <CardContent>
                   <div className="items-center gap-2 mb-4">
                     <p className="text-sm font-semibold text-muted-foreground">Instituição</p>

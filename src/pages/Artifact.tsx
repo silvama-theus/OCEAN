@@ -42,18 +42,20 @@ const Artifact = () => {
       <div className="grid grid-flow-col-dense grid-flow-row-dense sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1">
 
         <Card className="p-8" key={artifact.id}>
-          <div className="flex justify-center items-center mb-4"><img className="max-w-full h-auto" src={'http://lorempixel.com.br/300/300'} /></div>
-          <CardDescription>Era: {artifact.age}</CardDescription>
-          <CardDescription>Onde foi encontrado: {artifact.coordinates} | {artifact.foundPlace}</CardDescription>
-          <CardDescription>Contexto histórico: {artifact.historicalContext}</CardDescription>
-          <CardDescription>Origem ou utilidade: {artifact.origin_or_utility}</CardDescription>
-          <CardDescription>Relevância social: {artifact.socialRelevance}</CardDescription>
-          <CardDescription>Grupo social: {artifact.historicalPeople}</CardDescription>
-          <CardDescription>Peso: {artifact.weight}</CardDescription>
-          <CardDescription>Dimensões: {artifact.dimensions}</CardDescription>
-          <CardDescription>Composição: {artifact.materiaComposition}</CardDescription>
-          <CardDescription>Textura: {artifact.texture}</CardDescription>
-          <CardFooter className="pt-4">Créditos: {artifact.whoFound}</CardFooter>
+          <div className="flex justify-center items-center mb-4"><img className="max-w-full h-auto" src={artifact.imagePath} /></div>
+          <CardDescription className="space-y-2 p-8 text-justify">
+            <p><span className="font-bold">Era: </span>{artifact.age}</p>
+            <p><span className="font-bold">Onde foi encontrado:</span> {artifact.coordinates} | {artifact.foundPlace}</p>
+            <p><span className="font-bold">Contexto histórico: </span> {artifact.historicalContext}</p>
+            <p><span className="font-bold">Origem ou utilidade:</span> {artifact.origin_or_utility}</p>
+            <p><span className="font-bold">Relevância social:</span> {artifact.socialRelevance}</p>
+            <p><span className="font-bold">Grupo social: </span> {artifact.historicalPeople}</p>
+            <p><span className="font-bold">Peso: </span> {artifact.weight}</p>
+            <p><span className="font-bold">Dimensões:</span> {artifact.dimensions}</p>
+            <p><span className="font-bold">Composição: </span> {artifact.materiaComposition}</p>
+            <p><span className="font-bold">Textura:</span> {artifact.texture}</p>
+            <CardFooter className="pt-4">Créditos: {artifact.whoFound}</CardFooter>
+          </CardDescription>
           <hr></hr>
           <div className="pt-6">
             {artifact.Libraries && artifact.Libraries.map((library: any) => {

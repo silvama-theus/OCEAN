@@ -87,7 +87,7 @@ const Artifacts = () => {
             <Link to={`/artifact/${artifact.id}`} key={artifact.id} className="no-underline">
               <Card className="max-w-sm p-8 hover:bg-sky-700 cursor-pointer">
                 <CardTitle className="mb-6 ">{artifact.name}</CardTitle>
-                <div className="flex justify-center items-center mb-4"><img className="max-w-full h-auto" src={`http://lorempixel.com.br/300/300/${index}`} /></div>
+                <div className="flex justify-center items-center mb-4"><img className="max-w-full h-auto" src={artifact.imagePath} /></div>
                 <CardContent>Era: {artifact.age}</CardContent>
                 <CardContent>Onde foi encontrado: {artifact.coordinates} | {artifact.foundPlace}</CardContent>
                 <CardContent>Contexto histórico: {artifact.historicalContext}</CardContent>

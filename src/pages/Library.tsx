@@ -59,7 +59,7 @@ const Library = () => {
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto pt-3">
           {library.city} - {library.state} | {library.country}
         </p>
-        <div className="flex justify-center items-center mb-4 pt-4"><img className="max-w-full h-auto" src={`http://lorempixel.com.br/600/320`} /></div>
+        <div className="flex justify-center items-center mb-4 pt-4"><img className="max-w-full h-auto" src={library.imagePath} /></div>
       </div>
 
       {library.Institutes && library.Institutes.map((institute) => {

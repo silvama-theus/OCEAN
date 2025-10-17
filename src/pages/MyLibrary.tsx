@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Plus, Save, Trash2, Eye, FileDown } from "lucide-react";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
+import { MultiSelect } from "@/components/multi-select";
 import api from "../services/api"
 
 interface Library {
@@ -21,6 +22,8 @@ interface Library {
   private: boolean;
   imagePath: string;
   createdAt: string;
+  myInstitutes: string[];
+  inviteInstitutes: string[];
 }
 interface Artifact {
   id: string,
@@ -44,16 +47,21 @@ interface Artifact {
   createdAt: string,
 }
 
+
 const MyLibrary = () => {
   const [artifacts, setArtifacts] = useState<Artifact[]>([]);
   const [libraries, setLibraries] = useState<Library[]>([]);
-
+  const [selectedMyInstitutes, setSelectedMyInstitutes] = useState<string[]>([]);
+  const [institutesMyOptions, setInstitutesMyOptions] = useState<[]>([]);
+  const [selectedInviteInstitutes, setSelectedInviteInstitutes] = useState<string[]>([]);
+  const [institutesInviteOptions, setInstitutesInviteOptions] = useState<[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isFormLOpen, setIsFormLOpen] = useState(false);
   const [isFormAOpen, setIsFormAOpen] = useState(false);
   const [isUpdateData, setIsUpdateData] = useState(false);
   const [isUpdateAData, setIsUpdateAData] = useState(false);
   const [formLData, setFormLData] = useState({
+
     vid: "",
     name: "",
     description: "",
@@ -63,6 +71,9 @@ const MyLibrary = () => {
     private: false,
     imagePath: "",
     createdAt: "",
+    myInstitutes: [],
+    inviteInstitutes: []
+
   });
 
   const [formAData, setFormAData] = useState({
@@ -87,21 +98,37 @@ const MyLibrary = () => {
     createdAt: "",
   });
   useEffect(() => {
-  const fetchLibraries = async () => {
-    try {
-      const response = await api.get('/library/myLibraries', { withCredentials: true });
-      console.log(response.data)
-      setLibraries(response.data);
-    } catch (error) {
-      console.error("Erro ao buscar bibliotecas:", error);
-      toast.error("Erro ao carregar suas bibliotecas.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    const fetchData = async () => {
+      try {
+        const response = await api.get('/library/myLibraries', { withCredentials: true });
+        console.log(response.data)
+        setLibraries(response.data.libraries);
+        setInstitutesMyOptions(response.data.myInstitutes);
+        (() => {
+          const myInstitutesOptions = response.data.myInstitutes.map((institute: any) => ({
+            value: institute.id,
+            label: institute.name,
+          }));
+          setInstitutesMyOptions(myInstitutesOptions);
 
-  fetchLibraries();
-}, []);
+          const inviteInstitutesOptions = response.data.inviteInstitutes.map((institute: any) => ({
+            value: institute.id,
+            label: institute.name,
+          }));
+          setInstitutesInviteOptions(inviteInstitutesOptions);
+        })();
+      } catch (error) {
+        console.error("Erro ao buscar bibliotecas:", error);
+        toast.error("Erro ao carregar suas bibliotecas.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+
+
+    fetchData();
+  }, []);
   const formRef = useRef<HTMLDivElement>(null);
   const parseDate = (data: any) => {
     data = data.split("-");
@@ -129,6 +156,9 @@ const MyLibrary = () => {
 
   const changeLibrary = ((id) => {
     const library = libraries.find(library => library.vid === id);
+    const myInstitutes = library?.myInstitutes.map((institute: any) => institute.id) || [];
+    const inviteInstitutes = library?.inviteInstitutes.map((institute: any) => institute.id) || [];
+
     setFormLData({
       vid: library.vid,
       name: library.name,
@@ -139,6 +169,8 @@ const MyLibrary = () => {
       private: library.private,
       imagePath: library.imagePath,
       createdAt: library.createdAt,
+      myInstitutes: myInstitutes,
+      inviteInstitutes: inviteInstitutes
     });
     setIsUpdateData(true)
     setIsFormLOpen(true)
@@ -167,6 +199,8 @@ const MyLibrary = () => {
       private: false,
       imagePath: "",
       createdAt: "",
+      myInstitutes: [],
+      inviteInstitutes: []
     });
   })
 
@@ -178,7 +212,7 @@ const MyLibrary = () => {
     setArtifacts(updatedArtifacts);
     setIsFormLOpen(false);
     setIsUpdateData(false);
-    toast.success("Library updated successfully!");
+    toast.success("Artifact updated successfully!");
 
     setFormAData({
       id: "",
@@ -202,35 +236,81 @@ const MyLibrary = () => {
       createdAt: "",
     });
   })
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleLSubmit = async (e: React.FormEvent) => {
+
     e.preventDefault();
     const newLibrary: Library = {
-      id: Date.now().toString(),
+      id: "",
       ...formLData,
-      createdAt: "2025-10-13 04:47:16Tblablabla"
+      myInstitutes: selectedMyInstitutes,
+      inviteInstitutes: selectedInviteInstitutes,
     };
+    await api.post('/library', formLData, { withCredentials: true }).then((response) => {
+      if (response.code === 200) {
 
-    // const newArtifact: Artifact = {
-    //   id: Date.now().toString(),
-    //   ...formLData
-    // };
-
-    setLibraries([newLibrary, ...libraries]);
-    setFormLData({
-      vid: "",
-      name: "",
-      description: "",
-      city: "",
-      state: "",
-      country: "",
-      private: false,
-      imagePath: "",
-      createdAt: "",
+      }
+      setFormLData({
+        vid: "",
+        name: "",
+        description: "",
+        city: "",
+        state: "",
+        country: "",
+        private: false,
+        imagePath: "",
+        createdAt: "",
+        myInstitutes: [],
+        inviteInstitutes: [],
+      });
+      setIsFormLOpen(false);
+      toast.success("Library saved successfully!", {
+        description: `${formLData.name} has been added to your libraries.`,
+      });
+    }).catch((error) => {
+      console.error("There was an error!", error);
+      toast.error("Failed to save library!", {
+        description: "Please check your data and try again.",
+      });
     });
-    setIsFormLOpen(false);
 
-    toast.success("Artifact saved successfully!", {
-      description: `${formLData.name} has been added to your library.`,
+
+
+  };
+  const handleASubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await api.post('/artifact', formLData, { withCredentials: true }).then((response) => {
+      if (response.code === 200) {
+        toast.success("Artifact saved successfully!", {
+          description: `${formLData.name} has been added to your library.`,
+        });
+        setFormAData({
+          id: "",
+          vid: "",
+          name: "",
+          description: "",
+          imagePath: "",
+          foundPlace: "",
+          age: "",
+          historicalContext: "",
+          whoFound: "",
+          coordinates: "",
+          dimensions: "",
+          weight: "",
+          texture: "",
+          materialComposition: "",
+          historicalPeople: "",
+          origin_or_utility: "",
+          socialRelevance: "",
+          foundDate: "",
+          createdAt: "",
+        });
+        setIsFormLOpen(false);
+      }
+    }).catch((error) => {
+      console.error("There was an error!", error);
+      toast.error("Failed to save artifact!", {
+        description: "Please check your data and try again.",
+      });
     });
   };
 
@@ -278,7 +358,7 @@ const MyLibrary = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleLSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   {/* Identification Number */}
                   <div className="space-y-2">
@@ -401,6 +481,43 @@ const MyLibrary = () => {
 
 
                 </div>
+
+                <div className="grid md:grid-cols-3 gap-6 content-center">
+
+                  {/*My Institutes */}
+                  <div className="space-y-2 flex items-center justify-center col-span-2">
+                    <Label htmlFor="institutes" className="pt-2 pr-3">My Institutes</Label>
+
+
+                    <MultiSelect
+                      options={institutesMyOptions}
+                      onValueChange={setSelectedMyInstitutes}
+                      defaultValue={selectedMyInstitutes}
+                    />
+                    {/*Invite Institutes */}
+                    <div className="space-y-2 flex items-center justify-center col-span-2">
+                      <Label htmlFor="institutes" className="pt-2 pr-3">Invite Institutes</Label>
+
+
+                      <MultiSelect
+                        options={institutesInviteOptions}
+                        onValueChange={setSelectedInviteInstitutes}
+                        defaultValue={selectedInviteInstitutes}
+                      />
+                    </div>
+                    {/* <Input
+                      id="institutes"
+                      value={formLData.institutes}
+                      onChange={(e) => setFormLData({ ...formLData, institutes: e.target.value })}
+                      placeholder="Add institutes..."
+                      className="bg-background/50 border-primary/20"
+                    /> */}
+                  </div>
+
+
+
+
+                </div>
                 <div className="flex gap-3 justify-end">
                   <Button type="button" variant="outline" onClick={() => setIsFormLOpen(false)}>
                     Cancel
@@ -432,7 +549,7 @@ const MyLibrary = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleASubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   {/* Identification Number */}
                   <div className="space-y-2">
@@ -752,7 +869,7 @@ const MyLibrary = () => {
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <div className="flex justify-center items-center mb-4 pt-4"><img className="max-w-full h-auto" src={`http://lorempixel.com.br/600/320/${library.id}`} /></div>
+                  <div className="flex justify-center items-center mb-4 pt-4"><img className="max-w-full h-auto" src={library.imagePath} /></div>
                   <div>
                     <p className="text-sm font-semibold text-muted-foreground">Description</p>
                     <p className="text-sm">{library.description}</p>
