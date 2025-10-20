@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { Link } from "react-router-dom";
 import { MultiSelect } from "@/components/multi-select";
 import api from "../services/api"
+import { set } from "date-fns";
 
 interface Library {
   id: string;
@@ -24,6 +25,7 @@ interface Library {
   createdAt: string;
   myInstitutes: string[];
   inviteInstitutes: string[];
+  Institutes: any[];
 }
 interface Artifact {
   id: string,
@@ -52,16 +54,18 @@ const MyLibrary = () => {
   const [artifacts, setArtifacts] = useState<Artifact[]>([]);
   const [libraries, setLibraries] = useState<Library[]>([]);
   const [selectedMyInstitutes, setSelectedMyInstitutes] = useState<string[]>([]);
-  const [institutesMyOptions, setInstitutesMyOptions] = useState<[]>([]);
+  const [selectedInstitutes, setSelectedInstitutes] = useState<string[]>([]);
+  const [selectedInstitutesOptions, setSelectedInstitutesOptions] = useState<{ value: string; label: string }[]>([]);
+  const [institutesMyOptions, setInstitutesMyOptions] = useState<{ value: string; label: string }[]>([]);
   const [selectedInviteInstitutes, setSelectedInviteInstitutes] = useState<string[]>([]);
-  const [institutesInviteOptions, setInstitutesInviteOptions] = useState<[]>([]);
+  const [institutesInviteOptions, setInstitutesInviteOptions] = useState<{ value: string; label: string }[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isFormLOpen, setIsFormLOpen] = useState(false);
   const [isFormAOpen, setIsFormAOpen] = useState(false);
   const [isUpdateData, setIsUpdateData] = useState(false);
   const [isUpdateAData, setIsUpdateAData] = useState(false);
   const [formLData, setFormLData] = useState({
-
+    id: "",
     vid: "",
     name: "",
     description: "",
@@ -103,7 +107,6 @@ const MyLibrary = () => {
         const response = await api.get('/library/myLibraries', { withCredentials: true });
         console.log(response.data)
         setLibraries(response.data.libraries);
-        setInstitutesMyOptions(response.data.myInstitutes);
         (() => {
           const myInstitutesOptions = response.data.myInstitutes.map((institute: any) => ({
             value: institute.id,
@@ -154,12 +157,25 @@ const MyLibrary = () => {
 
   });
 
+
   const changeLibrary = ((id) => {
-    const library = libraries.find(library => library.vid === id);
-    const myInstitutes = library?.myInstitutes.map((institute: any) => institute.id) || [];
-    const inviteInstitutes = library?.inviteInstitutes.map((institute: any) => institute.id) || [];
+    const library = libraries.find(library => library.id === id);
+    const myInstitutes = library?.myInstitutes || [];
+    const inviteInstitutes = library?.inviteInstitutes || [];
+    const selectedInstitutes = library?.Institutes.map((library => {
+      return {
+        value: library.id,
+        label: library.name,
+      }
+    })
+    );
+    setSelectedInstitutesOptions(selectedInstitutes || []);
+
+    const selectedInstituteString = selectedInstitutes?.map((institute) => institute.value) || [];
+    setSelectedInstitutes(selectedInstituteString);
 
     setFormLData({
+      id: id,
       vid: library.vid,
       name: library.name,
       description: library.description,
@@ -179,17 +195,48 @@ const MyLibrary = () => {
     }, 100); // pequeno delay para garantir que a div já esteja montada
   });
 
-  const updateLibrary = (() => {
-    const updatedLibraries = libraries.map((lib) =>
-      lib.vid === formLData.vid ? { ...lib, ...formLData } : lib
-    );
+  const updateLibrary = (async () => {
+    const updatedLibrary: Library = {
+      ...formLData,
+      myInstitutes: selectedMyInstitutes,
+      inviteInstitutes: selectedInviteInstitutes,
+      Institutes: selectedInstitutes
+    }
 
-    setLibraries(updatedLibraries);
+    // const updatedLibraries = libraries.map((library) =>
+    //   library.vid === formLData.vid ? {
+    //     ...library, ...formLData,
+    //     myInstitutes: selectedMyInstitutes,
+    //     inviteInstitutes: selectedInviteInstitutes
+    //   } : library
+    // );
+    console.log(updatedLibrary)
+    //setLibraries(updatedLibraries);
     setIsFormLOpen(false);
     setIsUpdateData(false);
-    toast.success("Library updated successfully!");
+    await api.put(`/library/${formLData.id}`, updatedLibrary, { withCredentials: true }).then((response) => {
+      if (response.code === 200) {
+        toast.success("Library updated successfully!", {
+          description: `${formLData.name} has been updated.`,
+        }
+        );
+      } else if (response.code === 400) {
+        toast.error("Failed to update library!", {
+          description: "Please check your data and try again.",
+        });
+      } else if (response.code === 500) {
+        toast.error("Server error!", {
+          description: "Please try again later.",
+        });
+      } else if (response.code === 403) {
+        toast.error("Unauthorized!", {
+          description: "You don't have permission to update this library.",
+        });
+      }
+    });
 
     setFormLData({
+      id: "",
       vid: "",
       name: "",
       description: "",
@@ -235,7 +282,7 @@ const MyLibrary = () => {
       foundDate: "",
       createdAt: "",
     });
-  })
+  });
   const handleLSubmit = async (e: React.FormEvent) => {
 
     e.preventDefault();
@@ -244,12 +291,14 @@ const MyLibrary = () => {
       ...formLData,
       myInstitutes: selectedMyInstitutes,
       inviteInstitutes: selectedInviteInstitutes,
+      Institutes: []
     };
-    await api.post('/library', formLData, { withCredentials: true }).then((response) => {
+    await api.post('/library', newLibrary, { withCredentials: true }).then((response) => {
       if (response.code === 200) {
 
       }
       setFormLData({
+        id: "",
         vid: "",
         name: "",
         description: "",
@@ -481,8 +530,24 @@ const MyLibrary = () => {
 
 
                 </div>
-
                 <div className="grid md:grid-cols-3 gap-6 content-center">
+                  {/*Selected Institutes */}
+                  <div className="space-y-2 flex items-center justify-center col-span-2">
+                    <Label htmlFor="institutes" className="pt-2 pr-3">Selected Institutes</Label>
+
+
+                    <MultiSelect
+                      options={selectedInstitutesOptions}
+                      onValueChange={setSelectedMyInstitutes}
+                      defaultValue={selectedInstitutes}
+                      //disabled={true}
+                      unselectable="off"
+                      hideSelectAll={true}
+                      searchable={false}
+                    />
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-6 content-center">
 
                   {/*My Institutes */}
                   <div className="space-y-2 flex items-center justify-center col-span-2">
@@ -494,27 +559,18 @@ const MyLibrary = () => {
                       onValueChange={setSelectedMyInstitutes}
                       defaultValue={selectedMyInstitutes}
                     />
-                    {/*Invite Institutes */}
-                    <div className="space-y-2 flex items-center justify-center col-span-2">
-                      <Label htmlFor="institutes" className="pt-2 pr-3">Invite Institutes</Label>
-
-
-                      <MultiSelect
-                        options={institutesInviteOptions}
-                        onValueChange={setSelectedInviteInstitutes}
-                        defaultValue={selectedInviteInstitutes}
-                      />
-                    </div>
-                    {/* <Input
-                      id="institutes"
-                      value={formLData.institutes}
-                      onChange={(e) => setFormLData({ ...formLData, institutes: e.target.value })}
-                      placeholder="Add institutes..."
-                      className="bg-background/50 border-primary/20"
-                    /> */}
                   </div>
+                  {/*Invite Institutes */}
+                  <div className="space-y-2 flex items-center justify-center col-span-2">
+                    <Label htmlFor="institutes" className="pt-2 pr-3">Invite Institutes</Label>
 
 
+                    <MultiSelect
+                      options={institutesInviteOptions}
+                      onValueChange={setSelectedInviteInstitutes}
+                      defaultValue={selectedInviteInstitutes}
+                    />
+                  </div>
 
 
                 </div>
@@ -895,7 +951,7 @@ const MyLibrary = () => {
 
                   <div className="cols-span-2">
                     <Link to={`/library/${library.id}`}><Button variant="default" className="m-4">Show artifacts</Button></Link>
-                    <Button variant="default" className="m-4" onClick={() => changeLibrary(library.vid)}>Change library</Button>
+                    <Button variant="default" className="m-4" onClick={() => changeLibrary(library.id)}>Change library</Button>
                     <Button variant="default" className="m-4" onClick={newArtifact}>Add artifact</Button>
                   </div>
 
