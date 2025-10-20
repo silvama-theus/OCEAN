@@ -44,17 +44,17 @@ const Artifact = () => {
         <Card className="p-8" key={artifact.id}>
           <div className="flex justify-center items-center mb-4"><img className="max-w-full h-auto" src={artifact.imagePath} /></div>
           <CardDescription className="space-y-2 p-8 text-justify">
-            <p><span className="font-bold">Idade: </span>{artifact.age}</p>
-            <p><span className="font-bold">Onde foi encontrado:</span> {artifact.coordinates} | {artifact.foundPlace}</p>
-            <p><span className="font-bold">Contexto histórico: </span> {artifact.historicalContext}</p>
-            <p><span className="font-bold">Origem ou utilidade:</span> {artifact.origin_or_utility}</p>
-            <p><span className="font-bold">Relevância social:</span> {artifact.socialRelevance}</p>
-            <p><span className="font-bold">Grupo social: </span> {artifact.historicalPeople}</p>
-            <p><span className="font-bold">Peso: </span> {artifact.weight}</p>
-            <p><span className="font-bold">Dimensões:</span> {artifact.dimensions}</p>
-            <p><span className="font-bold">Composição: </span> {artifact.materiaComposition}</p>
-            <p><span className="font-bold">Textura:</span> {artifact.texture}</p>
-            <CardFooter className="pt-4">Créditos: {artifact.whoFound}</CardFooter>
+            <p><span className="font-bold">Idade: </span>{artifact.idade}</p>
+            <p><span className="font-bold">Onde foi encontrado:</span> {artifact.coordenadas} | {artifact.onde_foi_encontrado}</p>
+            <p><span className="font-bold">Contexto histórico: </span> {artifact.contexto_histórico}</p>
+            <p><span className="font-bold">Origem ou utilidade:</span> {artifact.origem_ou_utilidade}</p>
+            <p><span className="font-bold">Relevância social:</span> {artifact.relevancia_social}</p>
+            <p><span className="font-bold">Grupo social: </span> {artifact.povo_histórico}</p>
+            <p><span className="font-bold">Peso: </span> {artifact.peso}</p>
+            <p><span className="font-bold">Dimensões:</span> {artifact.dimenções}</p>
+            <p><span className="font-bold">Composição: </span> {artifact.Composição_do_material}</p>
+            <p><span className="font-bold">Textura:</span> {artifact.Textura}</p>
+            <CardFooter className="pt-4">Créditos: {artifact.Quem_encontrou}</CardFooter>
           </CardDescription>
           <hr></hr>
           <div className="pt-6">
@@ -62,10 +62,10 @@ const Artifact = () => {
               return <Link to={`/library/${library.id}`} key={library.id}>
                 <Card >
                   <div className="hover:bg-sky-700 hover:cursor-pointer rounded-t-md" >
-                    <CardTitle className="p-4">Disponível em: {library.name} - {library.country}</CardTitle>
+                    <CardTitle className="p-4">Disponível em: {library.nome} - {library.país}</CardTitle>
 
 
-                    <CardContent>{library.city} | {library.state}</CardContent>
+                    <CardContent>{library.cidade} | {library.estado}</CardContent>
                   </div>
                   {library.Institutes.map((institute: any) => {
                     return <div className="rounded-b-md" key={institute.id}>

@@ -379,10 +379,10 @@ const MyLibrary = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 animate-fade-in">
           <div>
             <h1 className="text-4xl font-bold mb-2">
-              My <span className="text-primary">Library</span>
+              Minha <span className="text-primary">Biblioteca</span>
             </h1>
             <p className="text-muted-foreground">
-              Manage and document your archaeological artifacts
+              Gerencie e documente seus artefatos arqueológicos
             </p>
           </div>
           <div className="flex gap-3">
@@ -401,7 +401,7 @@ const MyLibrary = () => {
         {isFormLOpen && (
           <Card ref={formRef} className="glass-card border-primary/20 mb-8 animate-fade-in">
             <CardHeader>
-              <CardTitle>Add New Library</CardTitle>
+              <CardTitle>Adicionar nova biblioteca</CardTitle>
               <CardDescription>
                 Fill in the details below to document a new library artifact
               </CardDescription>
@@ -412,7 +412,7 @@ const MyLibrary = () => {
                   {/* Identification Number */}
                   <div className="space-y-2">
                     <Label htmlFor="id-number">
-                      Identification Number <span className="text-destructive">*</span>
+                      Número de indentificação <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="id-number"
@@ -429,7 +429,7 @@ const MyLibrary = () => {
                   {/* Name */}
                   <div className="space-y-2">
                     <Label htmlFor="name">
-                      Library Name <span className="text-destructive">*</span>
+                      Nome da biblioteca <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="name"
@@ -445,7 +445,7 @@ const MyLibrary = () => {
                 {/* Description */}
                 <div className="space-y-2">
                   <Label htmlFor="description">
-                    Description <span className="text-destructive">*</span>
+                    Descrição <span className="text-destructive">*</span>
                   </Label>
                   <Textarea
                     id="description"
@@ -461,7 +461,7 @@ const MyLibrary = () => {
                   {/* City */}
                   <div className="space-y-2">
                     <Label htmlFor="city">
-                      City <span className="text-destructive">*</span>
+                      Cidade <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="city"
@@ -475,7 +475,7 @@ const MyLibrary = () => {
                   {/* State */}
                   <div className="space-y-2">
                     <Label htmlFor="state">
-                      State <span className="text-destructive">*</span>
+                      Estado <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="state"
@@ -489,7 +489,7 @@ const MyLibrary = () => {
                   {/* Country */}
                   <div className="space-y-2">
                     <Label htmlFor="country">
-                      Country <span className="text-destructive">*</span>
+                      País <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="country"
@@ -518,7 +518,7 @@ const MyLibrary = () => {
                   {/* Private */}
                   <div className="space-y-2 flex items-center justify-center">
                     <Label className="pr-3 pt-2" htmlFor="private">
-                      Private
+                      Privado
                     </Label>
                     <Switch
                       id="private"
@@ -599,7 +599,7 @@ const MyLibrary = () => {
         {isFormAOpen && (
           <Card ref={formRef} className="glass-card border-primary/20 mb-8 animate-fade-in">
             <CardHeader>
-              <CardTitle>Add New Artifact</CardTitle>
+              <CardTitle>Adicionar novo artefato</CardTitle>
               <CardDescription>
                 Fill in the details below to document a new artifact
               </CardDescription>
@@ -610,7 +610,7 @@ const MyLibrary = () => {
                   {/* Identification Number */}
                   <div className="space-y-2">
                     <Label htmlFor="id-number">
-                      Identification Number <span className="text-destructive">*</span>
+                      Número de indentificação <span className="text-destructive">*</span>
                     </Label>
                     <Input id="id-number" required value={formAData.vid} onChange={(e) =>
                       setFormAData({ ...formAData, vid: e.target.value })
@@ -623,7 +623,7 @@ const MyLibrary = () => {
                   {/* Name */}
                   <div className="space-y-2">
                     <Label htmlFor="name">
-                      Artifact Name <span className="text-destructive">*</span>
+                      Nome do artefato <span className="text-destructive">*</span>
                     </Label>
                     <Input id="name" required value={formAData.name} onChange={(e) => setFormAData({
                       ...formAData, name:
@@ -638,7 +638,7 @@ const MyLibrary = () => {
                 {/* Description */}
                 <div className="space-y-2">
                   <Label htmlFor="description">
-                    Description <span className="text-destructive">*</span>
+                    Descrição <span className="text-destructive">*</span>
                   </Label>
                   <Textarea id="description" required value={formAData.description} onChange={(e) => setFormAData({ ...formAData, description: e.target.value })}
                     placeholder="Size, shape, material, state of conservation..."
@@ -650,7 +650,7 @@ const MyLibrary = () => {
                   {/* Age */}
                   <div className="space-y-2">
                     <Label htmlFor="age">
-                      Age <span className="text-destructive">*</span>
+                      Idade <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="age"
@@ -875,13 +875,13 @@ const MyLibrary = () => {
                 <div className="w-16 h-16 mx-auto bg-primary/20 rounded-full flex items-center justify-center">
                   <Plus className="h-8 w-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold">No libraries yet</h3>
+                <h3 className="text-xl font-semibold"> Sem bibliotecas ainda</h3>
                 <p className="text-muted-foreground">
-                  Start documenting your collection by adding your first library
+                  Comece documentando sua coleção criando sua primeira biblioteca
                 </p>
                 <Button variant="hero" onClick={() => setIsFormLOpen(true)}>
                   <Plus className="h-4 w-4" />
-                  Add First Library
+                  Adicionar primeira biblioteca
                 </Button>
               </div>
             </CardContent>
@@ -927,32 +927,32 @@ const MyLibrary = () => {
                 <CardContent className="space-y-3">
                   <div className="flex justify-center items-center mb-4 pt-4"><img className="max-w-full h-auto" src={library.imagePath} /></div>
                   <div>
-                    <p className="text-sm font-semibold text-muted-foreground">Description</p>
+                    <p className="text-sm font-semibold text-muted-foreground">Descrição</p>
                     <p className="text-sm">{library.description}</p>
                   </div>
                   <div className="grid md:grid-cols-4 gap-3">
                     <div>
-                      <p className="text-sm font-semibold text-muted-foreground">City</p>
+                      <p className="text-sm font-semibold text-muted-foreground">Cidade</p>
                       <p className="text-sm">{library.city}</p>
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-muted-foreground">State</p>
+                      <p className="text-sm font-semibold text-muted-foreground">Estado</p>
                       <p className="text-sm">{library.state}</p>
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-muted-foreground">Country</p>
+                      <p className="text-sm font-semibold text-muted-foreground">País</p>
                       <p className="text-sm">{library.country}</p>
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-muted-foreground">Private</p>
+                      <p className="text-sm font-semibold text-muted-foreground">Privado</p>
                       <p className="text-sm">{library.private ? "Sim" : "Não"}</p>
                     </div>
                   </div>
 
                   <div className="cols-span-2">
-                    <Link to={`/library/${library.id}`}><Button variant="default" className="m-4">Show artifacts</Button></Link>
-                    <Button variant="default" className="m-4" onClick={() => changeLibrary(library.id)}>Change library</Button>
-                    <Button variant="default" className="m-4" onClick={newArtifact}>Add artifact</Button>
+                    <Link to={`/library/${library.id}`}><Button variant="default" className="m-4">Mostre artefatos</Button></Link>
+                    <Button variant="default" className="m-4" onClick={() => changeLibrary(library.vid)}>Mudar biblioteca</Button>
+                    <Button variant="default" className="m-4" onClick={newArtifact}>Adicionar artefato</Button>
                   </div>
 
 
