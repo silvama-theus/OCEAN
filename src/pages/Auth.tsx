@@ -38,14 +38,14 @@ const Auth = () => {
           password: formData.password
         });
         Cookies.set("x-token", response.data.token, { expires: 1 });
-        toast.success("Login successful!", {
-          description: "Welcome back to O.C.E.A.N",
+        toast.success("Login bem sucedido", {
+          description: "Bem vindo ao O.C.E.A.N",
         });
         navigate("/my-library");
       } catch (error: any) {
-        console.error("There was an error!", error);
-        toast.error("Login failed!", {
-          description: "Please check your credentials and try again.",
+        console.error("erro!", error);
+        toast.error("Falha no login!", {
+          description: "Por favor, cheque suas informações e tente novamente.",
         });
       }
     } else {
@@ -60,7 +60,7 @@ const Auth = () => {
             password: formData.password
           }).then(async (loginResponse) => {
             Cookies.set("x-token", loginResponse.data.token, { expires: 1 });
-            toast.success("Login successful!", {
+            toast.success("Login concluído", {
               description: "Welcome back to O.C.E.A.N",
             });
             navigate("/my-library");
@@ -69,13 +69,13 @@ const Auth = () => {
 
         });
       } catch (error: any) {
-        console.error("There was an error!", error);
-        toast.error("Registration failed!", {
-          description: "Please check your details and try again.",
+        console.error("Houve um erro!", error);
+        toast.error("Login falhado!", {
+          description: "Por favor, verifique suas informações e tente novamente.",
         });
         return;
       }
-      toast.success("Account created!", {
+      toast.success("Conta criada!", {
         description: "Welcome to O.C.E.A.N",
       });
     }
@@ -97,18 +97,17 @@ const Auth = () => {
         <CardHeader className="text-center space-y-4">
           <div className="flex justify-center">
             <div className="relative">
-              <Waves className="h-12 w-12 text-primary animate-float" />
-              <div className="absolute inset-0 blur-xl bg-primary/30 animate-pulse" />
+              <Waves className="h-12 w-12 text-primary" />
+               </div>
             </div>
-          </div>
           <div>
             <CardTitle className="text-2xl">
-              {isLogin ? "Welcome Back" : "Join O.C.E.A.N"}
+              {isLogin ? "Bem-vindo" : "Se junte ao O.C.E.A.N!"}
             </CardTitle>
             <CardDescription>
               {isLogin
-                ? "Sign in to access your library"
-                : "Create your account to start documenting"}
+                ? "Coloque sua conta para acessar sua biblioteca"
+                : "Crie sua conta para começar a documentar"}
             </CardDescription>
           </div>
         </CardHeader>
@@ -117,7 +116,7 @@ const Auth = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             {!isLogin && (
               <div className="space-y-2">
-                <Label htmlFor="name">Full Name</Label>
+                <Label htmlFor="name">Nome completo</Label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
@@ -125,7 +124,7 @@ const Auth = () => {
                     required={!isLogin}
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Dr. Jane Smith"
+                    placeholder="Seu nome"
                     className="pl-10 bg-background/50 border-primary/20"
                   />
                 </div>
@@ -142,14 +141,14 @@ const Auth = () => {
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  placeholder="archaeologist@example.com"
+                  placeholder="instituição@gmail.com"
                   className="pl-10 bg-background/50 border-primary/20"
                 />
               </div>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">Senha</Label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
@@ -170,13 +169,13 @@ const Auth = () => {
                   type="button"
                   className="text-sm text-primary hover:underline"
                 >
-                  Forgot password?
+                  Esqueceu sua senha?
                 </button>
               </div>
             )}
 
             <Button type="submit" variant="hero" className="w-full" size="lg">
-              Sign In
+              Login
             </Button>
 
             <div className="relative my-6">
@@ -226,7 +225,7 @@ const Auth = () => {
 
           <div className="mt-6 text-center">
             <Link to="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-              ← Back to home
+              ← Retorne para a página inicial
             </Link>
           </div>
         </CardContent>

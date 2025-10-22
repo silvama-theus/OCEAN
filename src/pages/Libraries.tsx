@@ -62,7 +62,7 @@ const Libraries = () => {
           {/* Country Filter */}
           <select value={selectedCountry} onChange={e => setSelectedCountry(e.target.value)} className="px-4 py-2 rounded-lg bg-background/50 border border-primary/20 text-foreground focus:outline-none focus:ring-2 focus:ring-primary">
             {countries.map(country => <option key={country} value={country}>
-              {country === "all" ? "All Countries" : country}
+              {country === "all" ? "Todos os países" : country}
             </option>)}
           </select>
         </div>

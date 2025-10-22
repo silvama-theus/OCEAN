@@ -354,7 +354,7 @@ const MyLibrary = () => {
             <CardHeader>
               <CardTitle>Adicionar nova biblioteca</CardTitle>
               <CardDescription>
-                Fill in the details below to document a new library artifact
+               "Preencha os critérios abaixo com as informações da sua biblioteca"
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -366,7 +366,7 @@ const MyLibrary = () => {
                       Número de indentificação <span className="text-destructive">*</span>
                     </Label>
                     <Input
-                      id="id-number"
+                      id="Número de indentificação"
                       required
                       value={formLData.vid}
                       onChange={(e) =>
@@ -387,7 +387,7 @@ const MyLibrary = () => {
                       required
                       value={formLData.name}
                       onChange={(e) => setFormLData({ ...formLData, name: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
+                      placeholder="Nome da instituição"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
@@ -403,7 +403,7 @@ const MyLibrary = () => {
                     required
                     value={formLData.description}
                     onChange={(e) => setFormLData({ ...formLData, description: e.target.value })}
-                    placeholder="Size, shape, material, state of conservation..."
+                    placeholder="Tamanho, Formato, material, estado de conservação..."
                     rows={4}
                     className="bg-background/50 border-primary/20"
                   />
@@ -419,7 +419,7 @@ const MyLibrary = () => {
                       required
                       value={formLData.city}
                       onChange={(e) => setFormLData({ ...formLData, city: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
+                      placeholder="Nome da cidade"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
@@ -433,7 +433,7 @@ const MyLibrary = () => {
                       required
                       value={formLData.state}
                       onChange={(e) => setFormLData({ ...formLData, state: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
+                      placeholder="Nome do estado"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
@@ -447,7 +447,7 @@ const MyLibrary = () => {
                       required
                       value={formLData.country}
                       onChange={(e) => setFormLData({ ...formLData, country: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
+                      placeholder="Nome do país"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
@@ -456,12 +456,12 @@ const MyLibrary = () => {
 
                   {/* Image */}
                   <div className="space-y-2 flex items-center justify-center col-span-2">
-                    <Label htmlFor="image" className="pt-2 pr-3">Image</Label>
+                    <Label htmlFor="image" className="pt-2 pr-3">Imagem</Label>
                     <Input
                       id="image"
                       value={formLData.imagePath}
                       onChange={(e) => setFormLData({ ...formLData, imagePath: e.target.value })}
-                      placeholder="Add image..."
+                      placeholder="Adicionar imagem"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
@@ -486,7 +486,7 @@ const MyLibrary = () => {
 
                   {/*My Institutes */}
                   <div className="space-y-2 flex items-center justify-center col-span-2">
-                    <Label htmlFor="institutes" className="pt-2 pr-3">My Institutes</Label>
+                    <Label htmlFor="institutes" className="pt-2 pr-3">Minhas instituições</Label>
 
 
                     <MultiSelect
@@ -496,7 +496,7 @@ const MyLibrary = () => {
                     />
                     {/*Invite Institutes */}
                     <div className="space-y-2 flex items-center justify-center col-span-2">
-                      <Label htmlFor="institutes" className="pt-2 pr-3">Invite Institutes</Label>
+                      <Label htmlFor="institutes" className="pt-2 pr-3">Convidar instituições</Label>
 
 
                       <MultiSelect
@@ -525,7 +525,7 @@ const MyLibrary = () => {
                   {!isUpdateData ?
                     <Button type="submit" variant="hero">
                       <Save className="h-4 w-4" />
-                      Create Library
+                      Criar biblioteca
                     </Button>
                     :
                     <Button variant="hero" type="button" onClick={updateLibrary}>
@@ -545,7 +545,7 @@ const MyLibrary = () => {
             <CardHeader>
               <CardTitle>Adicionar novo artefato</CardTitle>
               <CardDescription>
-                Fill in the details below to document a new artifact
+                Preencha os critérios abaixo com as informações do artefato
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -573,7 +573,6 @@ const MyLibrary = () => {
                       ...formAData, name:
                         e.target.value
                     })}
-                      placeholder="e.g., Ceramic Bowl"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
@@ -585,7 +584,7 @@ const MyLibrary = () => {
                     Descrição <span className="text-destructive">*</span>
                   </Label>
                   <Textarea id="description" required value={formAData.description} onChange={(e) => setFormAData({ ...formAData, description: e.target.value })}
-                    placeholder="Size, shape, material, state of conservation..."
+                    placeholder="Coloque informações adicionais sobre o artefato aqui..."
                     rows={4}
                     className="bg-background/50 border-primary/20"
                   />
@@ -601,21 +600,19 @@ const MyLibrary = () => {
                       required
                       value={formAData.age}
                       onChange={(e) => setFormAData({ ...formAData, age: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
                   {/* Found Place */}
                   <div className="space-y-2">
                     <Label htmlFor="foundPlace">
-                      Where were found <span className="text-destructive">*</span>
+                      Onde foi encontrado <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="foundPlace"
                       required
                       value={formAData.foundPlace}
                       onChange={(e) => setFormAData({ ...formAData, foundPlace: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
@@ -623,14 +620,13 @@ const MyLibrary = () => {
                   {/* Coordinates */}
                   <div className="space-y-2">
                     <Label htmlFor="coordinates">
-                      Coordinates where were found <span className="text-destructive">*</span>
+                      Coordendas a onde foi encontrado <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="coordinates"
                       required
                       value={formAData.coordinates}
                       onChange={(e) => setFormAData({ ...formAData, coordinates: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
@@ -641,14 +637,13 @@ const MyLibrary = () => {
                   {/* Historical context */}
                   <div className="space-y-2">
                     <Label htmlFor="historicalContext">
-                      Historical context <span className="text-destructive">*</span>
+                     Contexto histórico <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="historicalContext"
                       required
                       value={formAData.historicalContext}
                       onChange={(e) => setFormAData({ ...formAData, historicalContext: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
@@ -656,28 +651,27 @@ const MyLibrary = () => {
                   {/* Origin or Utility */}
                   <div className="space-y-2">
                     <Label htmlFor="origin_or_utility">
-                      Origin or Utility <span className="text-destructive">*</span>
+                      Origem ou utilidade <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="origin_or_utility"
                       required
                       value={formAData.origin_or_utility}
                       onChange={(e) => setFormAData({ ...formAData, origin_or_utility: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
                   {/* Social Relevance */}
                   <div className="space-y-2">
                     <Label htmlFor="socialRelevance">
-                      Social relevance <span className="text-destructive">*</span>
+                      Relevância social <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="socialRelevance"
                       required
                       value={formAData.socialRelevance}
                       onChange={(e) => setFormAData({ ...formAData, socialRelevance: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
+                      placeholder="Por que o artafato era importante"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
@@ -686,14 +680,14 @@ const MyLibrary = () => {
                   {/* Social group */}
                   <div className="space-y-2">
                     <Label htmlFor="historicalPeople">
-                      Social group <span className="text-destructive">*</span>
+                      Povo histórico <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="historicalPeople"
                       required
                       value={formAData.historicalPeople}
                       onChange={(e) => setFormAData({ ...formAData, historicalPeople: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
+                      placeholder="A quem o artefato pertencia"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
@@ -701,28 +695,27 @@ const MyLibrary = () => {
                   {/* Weight */}
                   <div className="space-y-2">
                     <Label htmlFor="weight">
-                      Weight <span className="text-destructive">*</span>
+                      Peso <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="weight"
                       required
                       value={formAData.weight}
                       onChange={(e) => setFormAData({ ...formAData, weight: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
                   {/* Dimensions */}
                   <div className="space-y-2">
                     <Label htmlFor="dimensions">
-                      Dimensions <span className="text-destructive">*</span>
+                     Dimenções <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="dimensions"
                       required
                       value={formAData.dimensions}
                       onChange={(e) => setFormAData({ ...formAData, dimensions: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
+                      placeholder="ex:10cm x 5cm x 3cm"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
@@ -731,14 +724,14 @@ const MyLibrary = () => {
                   {/* Composition */}
                   <div className="space-y-2">
                     <Label htmlFor="materialComposition">
-                      Composition <span className="text-destructive">*</span>
+                      Composição<span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="materialComposition"
                       required
                       value={formAData.materialComposition}
                       onChange={(e) => setFormAData({ ...formAData, materialComposition: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
+                      placeholder="De que material ele é feito"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
@@ -746,42 +739,28 @@ const MyLibrary = () => {
                   {/* Texture */}
                   <div className="space-y-2">
                     <Label htmlFor="texture">
-                      Texture <span className="text-destructive">*</span>
+                      Textura <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="texture"
                       required
                       value={formAData.texture}
                       onChange={(e) => setFormAData({ ...formAData, texture: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
-                  {/* Who found */}
-                  <div className="space-y-2">
-                    <Label htmlFor="whoFound">
-                      Who found <span className="text-destructive">*</span>
-                    </Label>
-                    <Input
-                      id="whoFound"
-                      required
-                      value={formAData.whoFound}
-                      onChange={(e) => setFormAData({ ...formAData, whoFound: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
-                      className="bg-background/50 border-primary/20"
-                    />
                   </div>
-                </div>
+
                 <div className="grid md:grid-cols-3 gap-6 content-center">
 
                   {/* Image */}
                   <div className="space-y-2 flex items-center justify-center col-span-2">
-                    <Label htmlFor="image" className="pt-2 pr-3">Image</Label>
+                    <Label htmlFor="image" className="pt-2 pr-3">Imagem</Label>
                     <Input
                       id="image"
                       value={formAData.imagePath}
                       onChange={(e) => setFormAData({ ...formAData, imagePath: e.target.value })}
-                      placeholder="Add image..."
+                      placeholder="Adicione uma imagem"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>

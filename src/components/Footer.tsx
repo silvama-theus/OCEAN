@@ -23,17 +23,17 @@ export const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Home
+                  Página inicial
                 </Link>
               </li>
               <li>
                 <Link to="/libraries" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Libraries
+                  Bibliotecas
                 </Link>
               </li>
               <li>
                 <Link to="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  About
+                  Sobre
                 </Link>
               </li>
             </ul>
@@ -41,7 +41,7 @@ export const Footer = () => {
 
           {/* Contact */}
           <div className="mx-0 px-0">
-            <h3 className="font-semibold mb-4 text-primary">  Contato</h3>
+            <h3 className="font-semibold mb-4 text-primary"> Contato</h3>
             <ul className="space-y-2">
               <li className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Mail className="h-4 w-4" />

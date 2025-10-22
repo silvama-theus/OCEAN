@@ -63,14 +63,14 @@ const Artifacts = () => {
           {/* Country Filter */}
           <select value={selectedCountry} onChange={e => setSelectedCountry(e.target.value)} className="px-4 py-2 rounded-lg bg-background/50 border border-primary/20 text-foreground focus:outline-none focus:ring-2 focus:ring-primary">
             {countries.map(country => <option key={country} value={country}>
-              {country === "all" ? "All Countries" : country}
+              {country === "all" ? "Todos os países" : country}
             </option>)}
           </select>
         </div>
 
         <div className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
           <Package className="h-4 w-4" />
-          <span>{filteredArtifacts.length} artifacts found</span>
+          <span>{filteredArtifacts.length} artefatos encontrados</span>
         </div>
       </div>
 
@@ -78,7 +78,7 @@ const Artifacts = () => {
 
 
       {filteredArtifacts.length === 0 && <div className="text-center py-20 animate-fade-in">
-        <p className="text-lg text-muted-foreground">No artifacts found matching your criteria</p>
+        <p className="text-lg text-muted-foreground">artefatos não encontrados</p>
       </div>}
 
       <div className="grid auto-cols-max grid-flow-row-dense lg:grid-cols-4 sm:grid-cols-2 gap-4">

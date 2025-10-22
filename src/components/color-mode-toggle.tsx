@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
 import { useColorMode } from "@/contexts/color-mode-context";
-
 export function ColorModeToggle() {
 	const { isGrayMode, toggleGrayMode } = useColorMode();
 
