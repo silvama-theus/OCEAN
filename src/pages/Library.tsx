@@ -8,50 +8,11 @@ import '../App.css';
 import '../index.css';
 import api from "../services/api";
 
-interface Contact {
-  id: string;
-  name: string;
-  info: string;
-}
-
-interface Institute {
-  id: string;
-  name: string;
-  image: string;
-  country: string;
-  city: string;
-  state: string;
-  address: string;
-  number: string;
-  Contacts: Contact[];
-}
-
-interface Artifact {
-  id: string;
-  name: string;
-  description: string;
-  identificationNumber: string;
-  coordinates: string;
-  foundPlace: string;
-  foundDate: string;
-  createdAt: string;
-}
-
-interface Library {
-  id: string;
-  name: string;
-  city: string;
-  state: string;
-  country: string;
-  imagePath: string;
-  observations?: string;
-  Institutes: Institute[];
-  Artifacts: Artifact[];
-}
+// Mock data - will be replaced with real data later
 
 const Library = () => {
   const { id } = useParams();
-  const [library, setLibrary] = useState<Library>({} as Library);
+  const [library, setLibrary] = useState<any>({});
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredArtifacts = library.Artifacts?.filter(artifact => {
@@ -134,7 +95,7 @@ const Library = () => {
         </div>
       </div>
       <div className="grid grid-flow-row-dense sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-        {filteredArtifacts.length != 0 && filteredArtifacts.map((artifact: Artifact, index) => {
+        {filteredArtifacts.length != 0 && filteredArtifacts.map((artifact: any, index) => {
           return <Link to={`/artifact/${artifact.id}`} key={artifact.id} className="w-full">
             <Card
               className="glass-card border-primary/20 hover:border-primary/40 transition-all group animate-fade-in"
