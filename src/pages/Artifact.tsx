@@ -10,9 +10,55 @@ import api from "../services/api";
 
 // Mock data - will be replaced with real data later
 
+type Contact = {
+  id?: string;
+  name?: string;
+  info?: string;
+};
+
+type Institute = {
+  id?: string;
+  name?: string;
+  Contacts?: Contact[];
+  address?: string;
+  number?: string;
+  city?: string;
+  state?: string;
+  country?: string;
+};
+
+type Library = {
+  id?: string;
+  nome?: string;
+  país?: string;
+  cidade?: string;
+  estado?: string;
+  Institutes?: Institute[];
+};
+
+interface ArtifactType {
+  id?: string;
+  name?: string;
+  description?: string;
+  imagePath?: string;
+  idade?: string;
+  coordenadas?: string;
+  onde_foi_encontrado?: string;
+  contexto_histórico?: string;
+  origem_ou_utilidade?: string;
+  relevancia_social?: string;
+  povo_histórico?: string;
+  peso?: string;
+  dimenções?: string;
+  Composição_do_material?: string;
+  Textura?: string;
+  Quem_encontrou?: string;
+  Libraries?: Library[];
+}
+
 const Artifact = () => {
   const { id } = useParams();
-  const [artifact, setArtifact] = useState<any>({});
+  const [artifact, setArtifact] = useState<ArtifactType>({} as ArtifactType);
 
 
   const getArtifact = async (id: string) => {
@@ -58,7 +104,7 @@ const Artifact = () => {
           </CardDescription>
           <hr></hr>
           <div className="pt-6">
-            {artifact.Libraries && artifact.Libraries.map((library: any) => {
+            {artifact.Libraries && artifact.Libraries.map((library: Library) => {
               return <Link to={`/library/${library.id}`} key={library.id}>
                 <Card >
                   <div className="hover:bg-sky-700 hover:cursor-pointer rounded-t-md" >
@@ -67,14 +113,14 @@ const Artifact = () => {
 
                     <CardContent>{library.cidade} | {library.estado}</CardContent>
                   </div>
-                  {library.Institutes.map((institute: any) => {
+                  {library.Institutes?.map((institute: Institute) => {
                     return <div className="rounded-b-md" key={institute.id}>
                       <hr></hr>
                       {
                         <div key={institute.id}>
                           <CardContent className="pt-4">Instituição: {institute.name}</CardContent>
                           {
-                            institute.Contacts && institute.Contacts.map((contact: any, index: number) => {
+                            institute.Contacts?.map((contact: Contact, index: number) => {
                               return <CardContent key={contact.id}>{contact.name}:{contact.info}</CardContent>
                             })
                           }

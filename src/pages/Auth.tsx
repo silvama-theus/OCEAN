@@ -42,7 +42,7 @@ const Auth = () => {
           description: "Bem vindo ao O.C.E.A.N",
         });
         navigate("/my-library");
-      } catch (error: any) {
+      } catch (error: unknown) {
         console.error("erro!", error);
         toast.error("Falha no login!", {
           description: "Por favor, cheque suas informações e tente novamente.",
@@ -68,7 +68,7 @@ const Auth = () => {
 
 
         });
-      } catch (error: any) {
+      } catch (error: unknown) {
         console.error("Houve um erro!", error);
         toast.error("Login falhado!", {
           description: "Por favor, verifique suas informações e tente novamente.",

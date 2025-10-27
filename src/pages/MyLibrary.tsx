@@ -334,8 +334,12 @@ const MyLibrary = () => {
   };
   const handleASubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await api.post('/artifact', formLData, { withCredentials: true }).then((response) => {
-      if (response.code === 200) {
+    const newArtifact: Artifact = {
+      id: "",
+      ...formAData
+    };
+    await api.post('/artifact', newArtifact, { withCredentials: true }).then((response) => {
+      if (response.code === 201) {
         toast.success("Artifact saved successfully!", {
           description: `${formLData.name} has been added to your library.`,
         });
@@ -443,7 +447,6 @@ const MyLibrary = () => {
                       required
                       value={formLData.name}
                       onChange={(e) => setFormLData({ ...formLData, name: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
                       className="bg-background/50 border-primary/20"
                    />
                   </div>
@@ -459,7 +462,7 @@ const MyLibrary = () => {
                     required
                     value={formLData.description}
                     onChange={(e) => setFormLData({ ...formLData, description: e.target.value })}
-                    placeholder="Size, shape, material, state of conservation..."
+                    placeholder="Escreva sua tag"
                     rows={4}
                     className="bg-background/50 border-primary/20"
                   />
@@ -475,7 +478,6 @@ const MyLibrary = () => {
                       required
                       value={formLData.city}
                       onChange={(e) => setFormLData({ ...formLData, city: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
@@ -489,7 +491,6 @@ const MyLibrary = () => {
                       required
                       value={formLData.state}
                       onChange={(e) => setFormLData({ ...formLData, state: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
@@ -503,7 +504,6 @@ const MyLibrary = () => {
                       required
                       value={formLData.country}
                       onChange={(e) => setFormLData({ ...formLData, country: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
@@ -512,12 +512,11 @@ const MyLibrary = () => {
 
                   {/* Image */}
                   <div className="space-y-2 flex items-center justify-center col-span-2">
-                    <Label htmlFor="image" className="pt-2 pr-3">Image</Label>
+                    <Label htmlFor="image" className="pt-2 pr-3">Imagem</Label>
                     <Input
                       id="image"
                       value={formLData.imagePath}
                       onChange={(e) => setFormLData({ ...formLData, imagePath: e.target.value })}
-                      placeholder="Add image..."
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
@@ -557,7 +556,7 @@ const MyLibrary = () => {
 
                   {/*My Institutes */}
                   <div className="space-y-2 flex items-center justify-center col-span-2">
-                    <Label htmlFor="institutes" className="pt-2 pr-3">My Institutes</Label>
+                    <Label htmlFor="institutes" className="pt-2 pr-3">Minhas instituições</Label>
 
 
                     <MultiSelect
@@ -568,7 +567,7 @@ const MyLibrary = () => {
                   </div>
                   {/*Invite Institutes */}
                   <div className="space-y-2 flex items-center justify-center col-span-2">
-                    <Label htmlFor="institutes" className="pt-2 pr-3">Invite Institutes</Label>
+                    <Label htmlFor="institutes" className="pt-2 pr-3">Convidar instituições</Label>
 
 
                     <MultiSelect
@@ -582,19 +581,14 @@ const MyLibrary = () => {
                 </div>
                 <div className="flex gap-3 justify-end">
                   <Button type="button" variant="outline" onClick={() => setIsFormLOpen(false)}>
-                    Cancel
+                    Cancelar
                   </Button>
-                  {!isUpdateData ?
+                  {!isUpdateData ? (
                     <Button type="submit" variant="hero">
                       <Save className="h-4 w-4" />
-                      Create Library
+                      Criar Biblioteca
                     </Button>
-                    :
-                    <Button variant="hero" type="button" onClick={updateLibrary}>
-                      <Save className="h-4 w-4" />
-                      Update Library
-                    </Button>
-                  }
+                  ) : null}
                 </div>
               </form>
             </CardContent>
@@ -670,14 +664,13 @@ const MyLibrary = () => {
                   {/* Found Place */}
                   <div className="space-y-2">
                     <Label htmlFor="foundPlace">
-                      Where were found <span className="text-destructive">*</span>
+                      Onde foi encontrado <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="foundPlace"
                       required
                       value={formAData.foundPlace}
                       onChange={(e) => setFormAData({ ...formAData, foundPlace: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
@@ -685,14 +678,13 @@ const MyLibrary = () => {
                   {/* Coordinates */}
                   <div className="space-y-2">
                     <Label htmlFor="coordinates">
-                      Coordinates where were found <span className="text-destructive">*</span>
+                      Coordenadas <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="coordinates"
                       required
                       value={formAData.coordinates}
                       onChange={(e) => setFormAData({ ...formAData, coordinates: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
@@ -703,7 +695,7 @@ const MyLibrary = () => {
                   {/* Historical context */}
                   <div className="space-y-2">
                     <Label htmlFor="historicalContext">
-                      Historical context <span className="text-destructive">*</span>
+                      Contexto histórico<span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="historicalContext"
@@ -718,21 +710,20 @@ const MyLibrary = () => {
                   {/* Origin or Utility */}
                   <div className="space-y-2">
                     <Label htmlFor="origin_or_utility">
-                      Origin or Utility <span className="text-destructive">*</span>
+                      Origem ou utilidade <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="origin_or_utility"
                       required
                       value={formAData.origin_or_utility}
                       onChange={(e) => setFormAData({ ...formAData, origin_or_utility: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
                   {/* Social Relevance */}
                   <div className="space-y-2">
                     <Label htmlFor="socialRelevance">
-                      Social relevance <span className="text-destructive">*</span>
+                      Relevância social <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="socialRelevance"
@@ -748,7 +739,7 @@ const MyLibrary = () => {
                   {/* Social group */}
                   <div className="space-y-2">
                     <Label htmlFor="historicalPeople">
-                      Social group <span className="text-destructive">*</span>
+                      Povo histórico <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="historicalPeople"
@@ -763,7 +754,7 @@ const MyLibrary = () => {
                   {/* Weight */}
                   <div className="space-y-2">
                     <Label htmlFor="weight">
-                      Weight <span className="text-destructive">*</span>
+                      Peso <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="weight"
@@ -777,7 +768,7 @@ const MyLibrary = () => {
                   {/* Dimensions */}
                   <div className="space-y-2">
                     <Label htmlFor="dimensions">
-                      Dimensions <span className="text-destructive">*</span>
+                      Dimenções <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="dimensions"
@@ -793,7 +784,7 @@ const MyLibrary = () => {
                   {/* Composition */}
                   <div className="space-y-2">
                     <Label htmlFor="materialComposition">
-                      Composition <span className="text-destructive">*</span>
+                      Composição<span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="materialComposition"
@@ -808,7 +799,7 @@ const MyLibrary = () => {
                   {/* Texture */}
                   <div className="space-y-2">
                     <Label htmlFor="texture">
-                      Texture <span className="text-destructive">*</span>
+                      Textura <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="texture"
@@ -822,7 +813,7 @@ const MyLibrary = () => {
                   {/* Who found */}
                   <div className="space-y-2">
                     <Label htmlFor="whoFound">
-                      Who found <span className="text-destructive">*</span>
+                      Quem encontrou <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="whoFound"
@@ -835,7 +826,22 @@ const MyLibrary = () => {
                   </div>
                 </div>
                 <div className="grid md:grid-cols-3 gap-6 content-center">
-
+                  
+                  {/* Tags */}
+                  <div className="space-y-2">
+                    <Label htmlFor="materialComposition">
+                      Tags<span className="text-destructive">*</span>
+                    </Label>
+                    <Input
+                      id="materialComposition"
+                      required
+                      value={formAData.materialComposition}
+                      onChange={(e) => setFormAData({ ...formAData, materialComposition: e.target.value })}
+                      placeholder="Coloque as palavras chaves aqui"
+                      className="bg-background/50 border-primary/20"
+                    />
+                  </div>
+                  
                   {/* Image */}
                   <div className="space-y-2 flex items-center justify-center col-span-2">
                     <Label htmlFor="image" className="pt-2 pr-3">Image</Label>

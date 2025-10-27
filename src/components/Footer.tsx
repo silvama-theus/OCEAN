@@ -40,13 +40,13 @@ export const Footer = () => {
           </div>
 
           {/* Contact */}
-          <div className="mx-0 px-0">
+          <div className="mx-2 px-2">
             <h3 className="font-semibold mb-4 text-primary"> Contato</h3>
             <ul className="space-y-2">
-              <li className="flex items-center gap-2 text-sm text-muted-foreground">
+              <li className="flex items-center gap-1 text-sm text-muted-foreground">
                 <Mail className="h-4 w-4" />
                 <span>equipetaubatesharks@gmail.com 
-                  sharksfll_12476
+                   instagram: sharksfll_12476
               </span>
               </li>
             </ul>

@@ -21,7 +21,7 @@ const Artifacts = () => {
   const [selectedCountry, setSelectedCountry] = useState("all");
   const countries = ["all", ...new Set(artifacts.map(lib => lib.country))];
   const filteredArtifacts = artifacts.filter(artifact => {
-    const matchesSearch = artifact.name.toLowerCase().includes(searchQuery.toLowerCase()) || artifact.origin_or_utility.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = artifact.name.toLowerCase().includes(searchQuery.toLowerCase()) || artifact.description.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCountry = selectedCountry === "all" || artifact.country === selectedCountry;
     return matchesSearch && matchesCountry;
   });
@@ -52,13 +52,14 @@ const Artifacts = () => {
       </div>
 
       {/* Filters */}
-      <div className="glass-card p-6 rounded-2xl mb-12 animate-fade-in">
+      <div className="glass-card p-6 rounded-1x2 mb-11 animate-fade-in">
         <div className="grid md:grid-cols-2 gap-4">
           {/* Search */}
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
             <Input placeholder="Pesquise sobre artefatos..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-10 bg-background/50 border-primary/20" />
           </div>
+
 
           {/* Country Filter */}
           <select value={selectedCountry} onChange={e => setSelectedCountry(e.target.value)} className="px-4 py-2 rounded-lg bg-background/50 border border-primary/20 text-foreground focus:outline-none focus:ring-2 focus:ring-primary">
