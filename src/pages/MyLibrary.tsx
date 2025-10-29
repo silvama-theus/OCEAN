@@ -64,6 +64,7 @@ const MyLibrary = () => {
   const [isFormAOpen, setIsFormAOpen] = useState(false);
   const [isUpdateData, setIsUpdateData] = useState(false);
   const [isUpdateAData, setIsUpdateAData] = useState(false);
+  const [selectedLibraryId, setSelectedLibraryId] = useState<string | null>(null);
   const [formLData, setFormLData] = useState({
     id: "",
     vid: "",
@@ -151,10 +152,11 @@ const MyLibrary = () => {
 
   });
 
-  const newArtifact = (() => {
+  const newArtifact = ((idLibrary) => {
+    setSelectedLibraryId(idLibrary);
     setIsFormAOpen(true); // abre o formulário
     setIsUpdateAData(false); // modo criação
-
+    console.log("Selected Library ID:", idLibrary);
     setTimeout(() => {
       formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 100); // pequeno delay para garantir que a div já esteja montada
@@ -335,7 +337,7 @@ const MyLibrary = () => {
   const handleASubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const newArtifact: Artifact = {
-      id: "",
+      id:selectedLibraryId,
       ...formAData
     };
     await api.post('/artifact', newArtifact, { withCredentials: true }).then((response) => {
@@ -646,21 +648,7 @@ const MyLibrary = () => {
                     className="bg-background/50 border-primary/20"
                   />
                 </div>
-                <div className="grid md:grid-cols-3 gap-6">
-                  {/* Age */}
-                  <div className="space-y-2">
-                    <Label htmlFor="age">
-                      Idade <span className="text-destructive">*</span>
-                    </Label>
-                    <Input
-                      id="age"
-                      required
-                      value={formAData.age}
-                      onChange={(e) => setFormAData({ ...formAData, age: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
-                      className="bg-background/50 border-primary/20"
-                    />
-                  </div>
+                <div className ="grid md:grid-cols-3 gap-6 content-center">
                   {/* Found Place */}
                   <div className="space-y-2">
                     <Label htmlFor="foundPlace">
@@ -674,35 +662,18 @@ const MyLibrary = () => {
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
-
-                  {/* Coordinates */}
-                  <div className="space-y-2">
-                    <Label htmlFor="coordinates">
-                      Coordenadas <span className="text-destructive">*</span>
-                    </Label>
-                    <Input
-                      id="coordinates"
-                      required
-                      value={formAData.coordinates}
-                      onChange={(e) => setFormAData({ ...formAData, coordinates: e.target.value })}
-                      className="bg-background/50 border-primary/20"
-                    />
-                  </div>
-
-
                 </div>
                 <div className="grid md:grid-cols-3 gap-6 content-center">
                   {/* Historical context */}
                   <div className="space-y-2">
                     <Label htmlFor="historicalContext">
-                      Contexto histórico<span className="text-destructive">*</span>
+                      Associação Cultural<span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="historicalContext"
                       required
                       value={formAData.historicalContext}
                       onChange={(e) => setFormAData({ ...formAData, historicalContext: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
@@ -710,7 +681,7 @@ const MyLibrary = () => {
                   {/* Origin or Utility */}
                   <div className="space-y-2">
                     <Label htmlFor="origin_or_utility">
-                      Origem ou utilidade <span className="text-destructive">*</span>
+                      Utilidade <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="origin_or_utility"
@@ -735,22 +706,8 @@ const MyLibrary = () => {
                     />
                   </div>
                 </div>
-                <div className="grid md:grid-cols-3 gap-6 content-center">
-                  {/* Social group */}
-                  <div className="space-y-2">
-                    <Label htmlFor="historicalPeople">
-                      Povo histórico <span className="text-destructive">*</span>
-                    </Label>
-                    <Input
-                      id="historicalPeople"
-                      required
-                      value={formAData.historicalPeople}
-                      onChange={(e) => setFormAData({ ...formAData, historicalPeople: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
-                      className="bg-background/50 border-primary/20"
-                    />
-                  </div>
-
+               
+                <div className ="grid md:grid-cols-3 gap-6 content-center">
                   {/* Weight */}
                   <div className="space-y-2">
                     <Label htmlFor="weight">
@@ -761,21 +718,19 @@ const MyLibrary = () => {
                       required
                       value={formAData.weight}
                       onChange={(e) => setFormAData({ ...formAData, weight: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
                   {/* Dimensions */}
                   <div className="space-y-2">
                     <Label htmlFor="dimensions">
-                      Dimenções <span className="text-destructive">*</span>
+                      Dimensões <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="dimensions"
                       required
                       value={formAData.dimensions}
                       onChange={(e) => setFormAData({ ...formAData, dimensions: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
@@ -791,7 +746,6 @@ const MyLibrary = () => {
                       required
                       value={formAData.materialComposition}
                       onChange={(e) => setFormAData({ ...formAData, materialComposition: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
@@ -806,7 +760,6 @@ const MyLibrary = () => {
                       required
                       value={formAData.texture}
                       onChange={(e) => setFormAData({ ...formAData, texture: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
@@ -820,7 +773,6 @@ const MyLibrary = () => {
                       required
                       value={formAData.whoFound}
                       onChange={(e) => setFormAData({ ...formAData, whoFound: e.target.value })}
-                      placeholder="e.g., Ceramic Bowl"
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
@@ -964,7 +916,7 @@ const MyLibrary = () => {
                   <div className="cols-span-2">
                     <Link to={`/library/${library.id}`}><Button variant="default" className="m-4">Mostre artefatos</Button></Link>
                     <Button variant="default" className="m-4" onClick={() => changeLibrary(library.vid)}>Mudar biblioteca</Button>
-                    <Button variant="default" className="m-4" onClick={newArtifact}>Adicionar artefato</Button>
+                    <Button variant="default" className="m-4" onClick={() => newArtifact(library.id)}>Adicionar artefato</Button>
                   </div>
 
 

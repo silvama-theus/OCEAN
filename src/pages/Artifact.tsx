@@ -54,6 +54,7 @@ interface ArtifactType {
   Textura?: string;
   Quem_encontrou?: string;
   Libraries?: Library[];
+  Tags?: string;
 }
 
 const Artifact = () => {
@@ -100,6 +101,7 @@ const Artifact = () => {
             <p><span className="font-bold">Dimensões:</span> {artifact.dimenções}</p>
             <p><span className="font-bold">Composição: </span> {artifact.Composição_do_material}</p>
             <p><span className="font-bold">Textura:</span> {artifact.Textura}</p>
+            <p><span className="font-bold">Tags:</span> {artifact.Tags}</p>
             <CardFooter className="pt-4">Créditos: {artifact.Quem_encontrou}</CardFooter>
           </CardDescription>
           <hr></hr>
@@ -110,8 +112,7 @@ const Artifact = () => {
                   <div className="hover:bg-sky-700 hover:cursor-pointer rounded-t-md" >
                     <CardTitle className="p-4">Disponível em: {library.nome} - {library.país}</CardTitle>
 
-
-                    <CardContent>{library.cidade} | {library.estado}</CardContent>
+                  <CardContent>{library.cidade} | {library.estado}</CardContent>
                   </div>
                   {library.Institutes?.map((institute: Institute) => {
                     return <div className="rounded-b-md" key={institute.id}>
