@@ -25,7 +25,7 @@ const Auth = () => {
     if (token) {
       navigate("/my-library");
     }
-  }, []);
+  }, [navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -42,7 +42,6 @@ interface ArtifactType {
   description?: string;
   imagePath?: string;
   idade?: string;
-  coordenadas?: string;
   onde_foi_encontrado?: string;
   contexto_histórico?: string;
   origem_ou_utilidade?: string;
@@ -54,6 +53,7 @@ interface ArtifactType {
   Textura?: string;
   Quem_encontrou?: string;
   Libraries?: Library[];
+  tags?: string;
 }
 
 const Artifact = () => {
@@ -78,11 +78,8 @@ const Artifact = () => {
       {/* Header */}
       <div className="text-center mb-12 animate-fade-in">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">
-          {artifact.name}
+          {artifact.tags}
         </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          {artifact.description}
-        </p>
       </div>
 
       <div className="grid grid-flow-col-dense grid-flow-row-dense sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1">
@@ -91,8 +88,6 @@ const Artifact = () => {
           <div className="flex justify-center items-center mb-4"><img className="max-w-full h-auto" src={artifact.imagePath} /></div>
           <CardDescription className="space-y-2 p-8 text-justify">
             <p><span className="font-bold">Idade: </span>{artifact.idade}</p>
-            <p><span className="font-bold">Onde foi encontrado:</span> {artifact.coordenadas} | {artifact.onde_foi_encontrado}</p>
-            <p><span className="font-bold">Contexto histórico: </span> {artifact.contexto_histórico}</p>
             <p><span className="font-bold">Origem ou utilidade:</span> {artifact.origem_ou_utilidade}</p>
             <p><span className="font-bold">Relevância social:</span> {artifact.relevancia_social}</p>
             <p><span className="font-bold">Grupo social: </span> {artifact.povo_histórico}</p>
@@ -100,6 +95,7 @@ const Artifact = () => {
             <p><span className="font-bold">Dimensões:</span> {artifact.dimenções}</p>
             <p><span className="font-bold">Composição: </span> {artifact.Composição_do_material}</p>
             <p><span className="font-bold">Textura:</span> {artifact.Textura}</p>
+            <p><span className="font-bold">tags:</span> {artifact.tags}</p>
             <CardFooter className="pt-4">Créditos: {artifact.Quem_encontrou}</CardFooter>
           </CardDescription>
           <hr></hr>

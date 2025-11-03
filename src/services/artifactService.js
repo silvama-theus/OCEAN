@@ -29,6 +29,7 @@ exports.select = async (req, res) => {
         origin_or_utility: data.origin_or_utility ? data.origin_or_utility : null,
         socialRelevance: data.socialRelevance ? data.socialRelevance : null,
         created_at: data.created_at ? data.created_at : null,
+        tags: data.tags ? data.tags : null,
         updated_at: data.updated_at ? data.updated_at : null,
     }
     artifact.keys(filter).forEach(key => {

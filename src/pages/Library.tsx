@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -95,6 +96,7 @@ const Library = () => {
         </div>
       </div>
       <div className="grid grid-flow-row-dense sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-explicit-any
         {filteredArtifacts.length != 0 && filteredArtifacts.map((artifact: any, index) => {
           return <Link to={`/artifact/${artifact.id}`} key={artifact.id} className="w-full">
             <Card
