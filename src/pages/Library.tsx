@@ -32,8 +32,12 @@ const Library = () => {
   }
 
   const parseDate = (data) => {
-    data = data.split("-")
-    return data[2].split("T")[0] + "/" + data[1] + "/" + data[0];
+    if (data != null || data != undefined) {
+      data = data.split("-")
+      return data[2].split("T")[0] + "/" + data[1] + "/" + data[0];
+    }else{
+      return ("Não definido")
+    }
   };
 
   const getLibrary = async (id: string) => {
@@ -96,7 +100,6 @@ const Library = () => {
         </div>
       </div>
       <div className="grid grid-flow-row-dense sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-explicit-any
         {filteredArtifacts.length != 0 && filteredArtifacts.map((artifact: any, index) => {
           return <Link to={`/artifact/${artifact.id}`} key={artifact.id} className="w-full">
             <Card
@@ -126,7 +129,7 @@ const Library = () => {
                     </Button>
                   </div>
                 </div>
-                <div className="flex justify-center items-center mb-4"><img className="max-w-full h-auto" src={`http://lorempixel.com.br/300/300/${index}`} /></div>
+                <div className="flex justify-center items-center mb-4"><img className="max-w-full h-auto" src={artifact.imagePath} /></div>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div>

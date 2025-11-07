@@ -45,6 +45,7 @@ interface Artifact {
   origin_or_utility: string,
   foundDate: string,
   createdAt: string,
+  library:string,
 }
 
 
@@ -62,6 +63,7 @@ const MyLibrary = () => {
   const [isFormAOpen, setIsFormAOpen] = useState(false);
   const [isUpdateData, setIsUpdateData] = useState(false);
   const [isUpdateAData, setIsUpdateAData] = useState(false);
+  const [selectedLibrary, setSelectedLibrary] = useState("");
   const [formLData, setFormLData] = useState({
     id: "",
     vid: "",
@@ -149,10 +151,11 @@ const MyLibrary = () => {
 
   });
 
-  const newArtifact = (() => {
+  const newArtifact = ((idLibrary) => {
     setIsFormAOpen(true); // abre o formulário
     setIsUpdateAData(false); // modo criação
-
+    setSelectedLibrary(idLibrary);
+    
     setTimeout(() => {
       formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 100); // pequeno delay para garantir que a div já esteja montada
@@ -334,9 +337,11 @@ const MyLibrary = () => {
   };
   const handleASubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log(selectedLibrary);
     const newArtifact: Artifact = {
       id: "",
-      ...formAData
+      ...formAData,
+      library:selectedLibrary,
     };
     await api.post('/artifact', newArtifact, { withCredentials: true }).then((response) => {
       if (response.code === 201) {
@@ -635,11 +640,10 @@ const MyLibrary = () => {
                   {/* Dating */}
                   <div className="space-y-2">
                     <Label htmlFor="dating">
-                      Datação(opcional) <span className="text-destructive">*</span>
+                      Datação (opcional)
                     </Label>
                     <Input
                       id="dating"
-                      required
                       value={formAData.age}
                       onChange={(e) => setFormAData({ ...formAData, age: e.target.value })}
                       placeholder="Caso não tenha, coloque não identificado"
@@ -788,11 +792,7 @@ const MyLibrary = () => {
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
-
-
-
-
-                </div>
+                  </div>
                 <div className="flex gap-3 justify-end">
                   <Button type="button" variant="outline" onClick={() => setIsFormAOpen(false)}>
                     Cancel
@@ -899,7 +899,7 @@ const MyLibrary = () => {
                   <div className="cols-span-2">
                     <Link to={`/library/${library.id}`}><Button variant="default" className="m-4">Mostre artefatos</Button></Link>
                     <Button variant="default" className="m-4" onClick={() => changeLibrary(library.vid)}>Mudar biblioteca</Button>
-                    <Button variant="default" className="m-4" onClick={newArtifact}>Adicionar artefato</Button>
+                    <Button variant="default" className="m-4" onClick={() => newArtifact(library.id)}>Adicionar artefato</Button>
                   </div>
 
 

@@ -21,10 +21,10 @@ const Artifacts = () => {
   const [selectedCountry, setSelectedCountry] = useState("all");
   const countries = ["all", ...new Set(artifacts.map(lib => lib.country))];
   const filteredArtifacts = artifacts.filter(artifact => {
-    const matchesSearch = artifact.name.toLowerCase().includes(searchQuery.toLowerCase()) || artifact.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = artifact.name.toLowerCase().includes(searchQuery.toLowerCase()) || artifact.description.toLowerCase().includes(searchQuery.toLowerCase()) || artifact.tags.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCountry = selectedCountry === "all" || artifact.country === selectedCountry;
     return matchesSearch && matchesCountry
-    
+
   });
   const getArtifacts = async () => {
     try {
@@ -53,17 +53,18 @@ const Artifacts = () => {
       </div>
 
       {/* Filters */}
-      <div className="glass-card p-6 rounded-1x2 mb-11 animate-fade-in">
-        <div className="grid md:grid-cols-2 gap-4">
-          
-          {/* Search */}
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-            <Input placeholder="Pesquise tags para encontrar os artefatos" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-10 bg-background/50 border-primary/20" />
-          </div>
+      <div className="glass-card p-4 rounded-4x4 mb-30 animate-fade-in">
+        <div className="grid md:grid-cols-1 gap-95">
 
+          {/* Search */}
+          <div className="search-wrap mb-8">
+            <Search className="absolute left-35 top-1/4 -translate-y-2/3 h-10 w-5 text-muted-foreground" />
+            <Input placeholder="Digite uma tag (ex.: 'pré-homérico', 'colonial')" aria-label="Pesquisar por tag" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-10 bg-background/50 border-primary/20" />
+          </div>
+          <div className="Artifacs" id="Artifact.tags"> </div>
+          
           {/* Country Filter */}
-          <select value={selectedCountry} onChange={e => setSelectedCountry(e.target.value)} className="px-4 py-2 rounded-lg bg-background/50 border border-primary/20 text-foreground focus:outline-none focus:ring-2 focus:ring-primary">
+          <select value={selectedCountry} onChange={e => setSelectedCountry(e.target.value)} className="px-2 py-2 rounded-lg bg-background/50 border border-primary/10 text-foreground focus:outline-none focus:ring-9 focus:ring-primary">
             {countries.map(country => <option key={country} value={country}>
               {country === "all" ? "Todos os países" : country}
             </option>)}
@@ -72,7 +73,7 @@ const Artifacts = () => {
 
         <div className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
           <Package className="h-4 w-4" />
-          <span>{filteredArtifacts.length} artefatos encontrados</span>
+          <span>{filteredArtifacts.length} Artefatos encontrados</span>
         </div>
       </div>
 
@@ -80,7 +81,7 @@ const Artifacts = () => {
 
 
       {filteredArtifacts.length === 0 && <div className="text-center py-20 animate-fade-in">
-        <p className="text-lg text-muted-foreground">artefatos não encontrados</p>
+        <p className="text-lg text-muted-foreground">Artefatos não encontrados</p>
       </div>}
 
       <div className="grid auto-cols-max grid-flow-row-dense lg:grid-cols-4 sm:grid-cols-2 gap-4">
@@ -91,8 +92,8 @@ const Artifacts = () => {
               <div className="flex justify-center items-center mb-4"><img className="max-w-full h-auto" src={artifact.imagePath} /></div>
               <CardContent>Era: {artifact.age}</CardContent>
               <CardContent>Onde foi encontrado: {artifact.coordinates} | {artifact.foundPlace}</CardContent>
-              <CardContent>Contexto histórico: {artifact.historicalContext}</CardContent>
-              <CardContent>Origem ou utilidade: {artifact.origin_or_utility}</CardContent>
+              <CardContent>Tags: {artifact.Tags}</CardContent>
+              <CardContent> Utilidade: {artifact.origin_or_utility}</CardContent>
               <CardContent>Encontrado por: {artifact.whoFound}</CardContent>
             </Card>
           </Link>

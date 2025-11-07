@@ -41,17 +41,14 @@ interface ArtifactType {
   name?: string;
   description?: string;
   imagePath?: string;
-  idade?: string;
-  onde_foi_encontrado?: string;
-  contexto_histórico?: string;
-  origem_ou_utilidade?: string;
-  relevancia_social?: string;
-  povo_histórico?: string;
-  peso?: string;
-  dimenções?: string;
-  Composição_do_material?: string;
-  Textura?: string;
-  Quem_encontrou?: string;
+  age?: string;
+  historicalPeople?: string;
+  origin_or_utility?: string;
+  weight?: string;
+  dimensions?: string;
+  materialComposition?: string;
+  texture?: string;
+  whoFound?: string;
   Libraries?: Library[];
   tags?: string;
 }
@@ -78,7 +75,7 @@ const Artifact = () => {
       {/* Header */}
       <div className="text-center mb-12 animate-fade-in">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">
-          {artifact.tags}
+          {artifact.name}
         </h1>
       </div>
 
@@ -87,16 +84,15 @@ const Artifact = () => {
         <Card className="p-8" key={artifact.id}>
           <div className="flex justify-center items-center mb-4"><img className="max-w-full h-auto" src={artifact.imagePath} /></div>
           <CardDescription className="space-y-2 p-8 text-justify">
-            <p><span className="font-bold">Idade: </span>{artifact.idade}</p>
-            <p><span className="font-bold">Origem ou utilidade:</span> {artifact.origem_ou_utilidade}</p>
-            <p><span className="font-bold">Relevância social:</span> {artifact.relevancia_social}</p>
-            <p><span className="font-bold">Grupo social: </span> {artifact.povo_histórico}</p>
-            <p><span className="font-bold">Peso: </span> {artifact.peso}</p>
-            <p><span className="font-bold">Dimensões:</span> {artifact.dimenções}</p>
-            <p><span className="font-bold">Composição: </span> {artifact.Composição_do_material}</p>
-            <p><span className="font-bold">Textura:</span> {artifact.Textura}</p>
-            <p><span className="font-bold">tags:</span> {artifact.tags}</p>
-            <CardFooter className="pt-4">Créditos: {artifact.Quem_encontrou}</CardFooter>
+            <p><span className="font-bold">Idade: </span>{artifact.age}</p>
+            <p><span className="font-bold">Utilidade:</span> {artifact.origin_or_utility}</p>
+            <p><span className="font-bold">Associação histórica:</span> {artifact.historicalPeople}</p>
+            <p><span className="font-bold">Peso: </span> {artifact.weight}</p>
+            <p><span className="font-bold">Dimensões:</span> {artifact.dimensions}</p>
+            <p><span className="font-bold">Composição: </span> {artifact.materialComposition}</p>
+            <p><span className="font-bold">Textura:</span> {artifact.texture}</p>
+            <p><span className="font-bold">Tags:</span> {artifact.tags? artifact.tags : "Sem tags definidas"}</p>
+            <CardFooter className="pt-4">Créditos: {artifact.whoFound}</CardFooter>
           </CardDescription>
           <hr></hr>
           <div className="pt-6">
