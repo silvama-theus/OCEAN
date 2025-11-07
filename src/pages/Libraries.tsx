@@ -43,7 +43,7 @@ const Libraries = () => {
       {/* Header */}
       <div className="text-center mb-12 animate-fade-in">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">
-          Explore <span className="text-primary">Bibliotecas</span>
+          Explore <span className="text-primary">Acervos</span>
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           Descubra coleções arqueológicas de instituições e pesquisadores ao redor do mundo
@@ -56,7 +56,7 @@ const Libraries = () => {
           {/* Search */}
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-            <Input placeholder="ib pesquise bibliotecas e instituições..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-10 bg-background/50 border-primary/20" />
+            <Input placeholder="ib pesquise acervos e instituições..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-10 bg-background/50 border-primary/20" />
           </div>
 
           {/* Country Filter */}
@@ -69,7 +69,7 @@ const Libraries = () => {
 
         <div className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
           <Package className="h-4 w-4" />
-          <span>{filteredLibraries.length} bibliotecas encontradas</span>
+          <span>{filteredLibraries.length} Acervos encontrados</span>
         </div>
       </div>
 
@@ -77,7 +77,7 @@ const Libraries = () => {
 
 
       {filteredLibraries.length === 0 && <div className="text-center py-20 animate-fade-in">
-        <p className="text-lg text-muted-foreground">Biblioteca não encontrada.</p>
+        <p className="text-lg text-muted-foreground">Acervo não encontrado.</p>
       </div>}
 
       <div className="grid auto-cols-max grid-flow-row-dense lg:grid-cols-4 sm:grid-cols-2 gap-4">

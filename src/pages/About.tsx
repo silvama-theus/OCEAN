@@ -8,10 +8,10 @@ const About = () => {
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in">
           <div className="inline-flex items-center gap-2 mb-6">
-            <Waves className="h-12 w-12 text-primary animate-float" />
+            <Waves className="h-12 w-12 text-primary"/>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Sobre <span className="text-primary">O.C.E.A.N</span>
+            Sobre<span className="text-primary">O.C.E.A.N</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Organized Collection of Exploration and Artifact Network
@@ -35,8 +35,8 @@ const About = () => {
                 <em>"Coleção Organizada de Exploração e Rede de Artefatos"</em>.
               </p>
               <p>
-                O nome foi escolhido para refletir uma conexão com o nome da nossa equipe Sharks e com nosso projeto{" "}
-                <strong className="text-secondary">Sharks Team</strong>, simbolizando a profundidade e o vasto conhecimento do oceano. 
+                O nome foi escolhido para refletir uma conexão com o nome da nossa equipe Sharks com o nosso projeto,
+                juntamente com nosso objetivo, que simboliza a profundidade e o vasto conhecimento do oceano. 
                 Assim como o oceano guarda inúmeros mistérios esperando para serem descobertos, 
                 nossa plataforma serve como uma porta de entrada para os tesouros da história humana.
 .
@@ -134,7 +134,7 @@ const About = () => {
               </p>
               <div className="pt-4 border-t border-primary/20">
                 <p className="text-sm">
-                  <strong className="text-foreground">Contact:</strong> sharks@ocean.team
+                  <strong className="text-foreground">Nosso contato:</strong> equipetaubatesharks@gmail.com
                 </p>
               </div>
             </CardContent>

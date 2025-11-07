@@ -20,7 +20,7 @@ export const Navbar = () => {
   }, []);
   const navLinks = [
     { path: "/", label: "Página inicial" },
-    { path: "/libraries", label: "Biblioteca" },
+    { path: "/libraries", label: "Acervos" },
     { path: "/artifacts", label: "Artefatos" },
     { path: "/my-library", label: "Minha biblioteca" },
     { path: "/about", label: "Sobre" },

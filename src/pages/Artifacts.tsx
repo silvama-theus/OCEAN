@@ -21,7 +21,7 @@ const Artifacts = () => {
   const [selectedCountry, setSelectedCountry] = useState("all");
   const countries = ["all", ...new Set(artifacts.map(lib => lib.country))];
   const filteredArtifacts = artifacts.filter(artifact => {
-    const matchesSearch = artifact.name.toLowerCase().includes(searchQuery.toLowerCase()) || artifact.description.toLowerCase().includes(searchQuery.toLowerCase()) || artifact.tags.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = artifact.name.toLowerCase().includes(searchQuery.toLowerCase()) || artifact.description.toLowerCase().includes(searchQuery.toLowerCase()) || (artifact.tags != null ? artifact.tags.toLowerCase().includes(searchQuery.toLowerCase() ): artifact.name.toLowerCase().includes(searchQuery.toLowerCase()));
     const matchesCountry = selectedCountry === "all" || artifact.country === selectedCountry;
     return matchesSearch && matchesCountry
 
@@ -57,9 +57,9 @@ const Artifacts = () => {
         <div className="grid md:grid-cols-1 gap-95">
 
           {/* Search */}
-          <div className="search-wrap mb-8">
-            <Search className="absolute left-35 top-1/4 -translate-y-2/3 h-10 w-5 text-muted-foreground" />
-            <Input placeholder="Digite uma tag (ex.: 'pré-homérico', 'colonial')" aria-label="Pesquisar por tag" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-10 bg-background/50 border-primary/20" />
+          <div className="search-wrap mb-9">
+            <Search className="absolute left-25 top-1/4 -translate-y-2/3 h-10 w-5 text-muted-foreground" />
+            <Input placeholder=" Pesquise os artefatos por tags (ex:'pré-homérico', 'colonial') ou pelo nome" aria-label="Pesquisar por tag" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-10 bg-background/50 border-primary/20" />
           </div>
           <div className="Artifacs" id="Artifact.tags"> </div>
           

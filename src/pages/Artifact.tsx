@@ -29,10 +29,10 @@ type Institute = {
 
 type Library = {
   id?: string;
-  nome?: string;
-  país?: string;
-  cidade?: string;
-  estado?: string;
+  name?: string;
+  country?: string;
+  city?: string;
+  state?: string;
   Institutes?: Institute[];
 };
 
@@ -83,6 +83,7 @@ const Artifact = () => {
 
         <Card className="p-8" key={artifact.id}>
           <div className="flex justify-center items-center mb-4"><img className="max-w-full h-auto" src={artifact.imagePath} /></div>
+          <p>{artifact.description}</p>
           <CardDescription className="space-y-2 p-8 text-justify">
             <p><span className="font-bold">Idade: </span>{artifact.age}</p>
             <p><span className="font-bold">Utilidade:</span> {artifact.origin_or_utility}</p>
@@ -100,10 +101,10 @@ const Artifact = () => {
               return <Link to={`/library/${library.id}`} key={library.id}>
                 <Card >
                   <div className="hover:bg-sky-700 hover:cursor-pointer rounded-t-md" >
-                    <CardTitle className="p-4">Disponível em: {library.nome} - {library.país}</CardTitle>
+                    <CardTitle className="p-4">Disponível em: {library.name} - {library.country}</CardTitle>
 
 
-                    <CardContent>{library.cidade} | {library.estado}</CardContent>
+                    <CardContent>{library.city} | {library.state}</CardContent>
                   </div>
                   {library.Institutes?.map((institute: Institute) => {
                     return <div className="rounded-b-md" key={institute.id}>
