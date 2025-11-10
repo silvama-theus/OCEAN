@@ -435,8 +435,8 @@ const MyLibrary = () => {
           </div>
         </div>
         {/*Modal de exclusão*/}
-        
-        
+
+
 
         {/* Add Library Form */}
         {isFormLOpen && (
@@ -633,7 +633,7 @@ const MyLibrary = () => {
             <CardHeader>
               <CardTitle>Adicionar novo artefato</CardTitle>
               <CardDescription>
-                Fill in the details below to document a new artifact
+               Preencha os critérios abaixo para documentar um novo artefato.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -666,34 +666,6 @@ const MyLibrary = () => {
                     />
                   </div>
                 </div>
-                {/* Dating */}
-                <div className="space-y-2">
-                  <Label htmlFor="dating">
-                    Datação (opcional)
-                  </Label>
-                  <Input
-                    id="dating"
-                    value={formAData.age}
-                    onChange={(e) => setFormAData({ ...formAData, age: e.target.value })}
-                    placeholder="Caso não tenha, coloque não identificado"
-                    className="bg-background/50 border-primary/20"
-                  />
-                </div>
-
-                {/* Weight */}
-                <div className="space-y-2">
-                  <Label htmlFor="weight">
-                    Peso <span className="text-destructive">*</span>
-                  </Label>
-                  <Input
-                    id="weight"
-                    required
-                    value={formAData.weight}
-                    onChange={(e) => setFormAData({ ...formAData, weight: e.target.value })}
-                    className="bg-background/50 border-primary/20"
-                  />
-                </div>
-
                 {/* Description */}
                 <div className="space-y-2">
                   <Label htmlFor="description">
@@ -705,21 +677,53 @@ const MyLibrary = () => {
                     className="bg-background/50 border-primary/20"
                   />
                 </div>
+
+
+
+
+
                 <div className="grid md:grid-cols-3 gap-6">
+                  {/* Found Place */}
+                  <div className="space-y-2">
+                    <Label htmlFor="foundPlace">
+                      Onde foi encontrado <span className="text-destructive">*</span>
+                    </Label>
+                    <Input
+                      id="foundPlace"
+                      required
+                      value={formAData.foundPlace}
+                      onChange={(e) => setFormAData({ ...formAData, foundPlace: e.target.value })}
+                      className="bg-background/50 border-primary/20"
+                    />
+                  </div>
+                  {/* Weight */}
+                  <div className="space-y-2">
+                    <Label htmlFor="weight">
+                      Peso <span className="text-destructive">*</span>
+                    </Label>
+                    <Input
+                      id="weight"
+                      required
+                      value={formAData.weight}
+                      onChange={(e) => setFormAData({ ...formAData, weight: e.target.value })}
+                      className="bg-background/50 border-primary/20"
+                    />
+                  </div>
+                  {/* Dating */}
+                  <div className="space-y-2">
+                    <Label htmlFor="dating">
+                      Datação (opcional)
+                    </Label>
+                    <Input
+                      id="dating"
+                      value={formAData.age}
+                      onChange={(e) => setFormAData({ ...formAData, age: e.target.value })}
+                      placeholder="Caso não tenha, coloque não identificado"
+                      className="bg-background/50 border-primary/20"
+                    />
+                  </div>
                 </div>
-                {/* Found Place */}
-                <div className="space-y-2">
-                  <Label htmlFor="foundPlace">
-                    Onde foi encontrado <span className="text-destructive">*</span>
-                  </Label>
-                  <Input
-                    id="foundPlace"
-                    required
-                    value={formAData.foundPlace}
-                    onChange={(e) => setFormAData({ ...formAData, foundPlace: e.target.value })}
-                    className="bg-background/50 border-primary/20"
-                  />
-                </div>
+
                 <div className="grid md:grid-cols-3 gap-6 content-center">
                   {/* Origin or Utility */}
                   <div className="space-y-2">
@@ -734,35 +738,39 @@ const MyLibrary = () => {
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
+
+                  {/* Historical people */}
+                  <div className="space-y-2">
+                    <Label htmlFor="historical_people">
+                      Sítio arqueológico <span className="text-destructive">*</span>
+                    </Label>
+                    <Input
+                      id="historical_people"
+                      required
+                      value={formAData.historicalPeople}
+                      onChange={(e) => setFormAData({ ...formAData, historicalPeople: e.target.value })}
+                      className="bg-background/60 border-primary/20"
+                    />
+                  </div>
+
+                  {/* Dimensions */}
+                  <div className="space-y-2">
+                    <Label htmlFor="dimensions">
+                      Dimensões <span className="text-destructive">*</span>
+                    </Label>
+                    <Input
+                      id="dimensions"
+                      required
+                      value={formAData.dimensions}
+                      onChange={(e) => setFormAData({ ...formAData, dimensions: e.target.value })}
+                      className="bg-background/50 border-primary/20"
+                    />
+                  </div>
+                  
                 </div>
                 <div className="grid md:grid-cols-3 gap-6 content-center"></div>
-                {/* Historical people */}
-                <div className="space-y-2">
-                  <Label htmlFor="historical_people">
-                    Sítio arqueológico <span className="text-destructive">*</span>
-                  </Label>
-                  <Input
-                    id="historical_people"
-                    required
-                    value={formAData.historicalPeople}
-                    onChange={(e) => setFormAData({ ...formAData, historicalPeople: e.target.value })}
-                    className="bg-background/60 border-primary/20"
-                  />
-                </div>
-                <div className="grid md:grid-cols-3 gap-6 content-center"></div>
-                {/* Dimensions */}
-                <div className="space-y-2">
-                  <Label htmlFor="dimensions">
-                    Dimensões <span className="text-destructive">*</span>
-                  </Label>
-                  <Input
-                    id="dimensions"
-                    required
-                    value={formAData.dimensions}
-                    onChange={(e) => setFormAData({ ...formAData, dimensions: e.target.value })}
-                    className="bg-background/50 border-primary/20"
-                  />
-                </div>
+
+
                 <div className="grid md:grid-cols-3 gap-6 content-center">
                   {/* Composition */}
                   <div className="space-y-2">
@@ -899,7 +907,7 @@ const MyLibrary = () => {
                       </CardDescription>
                     </div>
                     <div className="flex gap-2">
-                      
+
                       <Button
                         variant="ghost"
                         size="icon"
