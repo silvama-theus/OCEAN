@@ -24,6 +24,7 @@ export const Navbar = () => {
     { path: "/artifacts", label: "Artefatos" },
     { path: "/my-library", label: "Minha biblioteca" },
     { path: "/about", label: "Sobre" },
+    { path: "/dashboard", label: "Painel de controle" },
   ];
 
   return (
@@ -60,9 +61,10 @@ export const Navbar = () => {
             ))}
             {
               token ? (
-                <Button variant="hero" type="button" onClick={logout} size="sm">
-                  Logout
-                </Button>
+               
+                  <Button variant="hero" type="button" onClick={logout} size="sm">
+                    Logout
+                  </Button>
               ) : (
                 <Button variant="hero" size="sm" asChild>
                   <Link to="/auth">Faça seu login</Link>
@@ -100,16 +102,16 @@ export const Navbar = () => {
             ))}
             <div className="px-4">
               {
-              token ? (
-                <Button variant="hero" type="button" onClick={logout} size="sm">
-                  Logout
-                </Button>
-              ) : (
-                <Button variant="hero" size="sm" asChild>
-                  <Link to="/auth">Get Started</Link>
-                </Button>
-              )
-            }
+                token ? (
+                  <Button variant="hero" type="button" onClick={logout} size="sm">
+                    Logout
+                  </Button>
+                ) : (
+                  <Button variant="hero" size="sm" asChild>
+                    <Link to="/auth">Get Started</Link>
+                  </Button>
+                )
+              }
             </div>
           </div>
         )}
