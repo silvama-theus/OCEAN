@@ -46,14 +46,14 @@ const Dashboard = () => {
         id: response.data.uid,
         email: response.data.email,
         name: response.data.name,
-        oldPassword: "",
-        newPassword: "",
-        confirmPassword: "",
+        oldPassword:response.data.olPassword,
+        newPassword:response.data.newPassword,
+        confirmPassword:response.data.confirmPassword,
       })
 
     };
 
-    fetchData();
+  fetchData();
 
   }, []);
   const formRef = useRef<HTMLDivElement>(null);

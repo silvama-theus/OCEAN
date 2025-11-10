@@ -120,12 +120,9 @@ const Artifact = () => {
                         </div>
 
                       }
-
-
-
-                      <CardContent>{institute.address}, {institute.number}, {institute.city} - {institute.state} | {institute.country}</CardContent>
-
-                    </div>
+          
+            <CardContent>{institute.address}, {institute.number}, {institute.city} - {institute.state} | {institute.country}</CardContent>
+                        </div>
                   })}
                 </Card>
 

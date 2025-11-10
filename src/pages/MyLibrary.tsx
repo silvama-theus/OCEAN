@@ -523,7 +523,6 @@ const MyLibrary = () => {
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
-                  
                   {/* Country */}
                   <div className="space-y-2">
                     <Label htmlFor="country">
@@ -900,13 +899,11 @@ const MyLibrary = () => {
                       </CardDescription>
                     </div>
                     <div className="flex gap-2">
-                      <Button variant="ghost" size="icon">
-                        <Eye className="h-4 w-4" />
-                      </Button>
+                      
                       <Button
                         variant="ghost"
                         size="icon"
-                        onClick={() => { setSureDelete(true); setSelectedLibrary(library.id) }}
+                        onClick={() => { setSureDelete(true); setSelectedLibrary(library.id); handleDelete(library.id) }}
 
                       >
                         <Trash2 className="h-4 w-4 text-destructive" />
