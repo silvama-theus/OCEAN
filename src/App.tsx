@@ -8,6 +8,7 @@ import { Footer } from "./components/Footer";
 import Home from "./pages/Home";
 import Artifacts from "./pages/Artifacts";
 import Artifact from "./pages/Artifact";
+import Artifact3D from "./pages/Artifact3D";
 import Libraries from "./pages/Libraries";
 import MyLibrary from "./pages/MyLibrary";
 import About from "./pages/About";
@@ -37,6 +38,8 @@ const App = () => (
               <Route path="/my-library" element={<PrivateRoute><MyLibrary /></PrivateRoute>} />
               <Route path="/about" element={<About />} />
               <Route path="/auth" element={<Auth />} />
+              <Route path="/artifact/3d/:id" element={<Artifact3D />} />
+
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
