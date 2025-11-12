@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Search, MapPin, Package, Eye, Trash2 } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
+import { Search, MapPin, Package, Eye, Trash2, ArrowLeftIcon } from "lucide-react";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import '../App.css';
 import '../index.css';
 import api from "../services/api";
+import { Arrow } from "@radix-ui/react-tooltip";
 
 // Mock data - will be replaced with real data later
 
@@ -21,6 +22,8 @@ const Library = () => {
 
     return matchesSearch;
   }) || [];
+
+  const navigate = useNavigate();
   const handleDelete = async (id: string) => {
     try {
       //await api.delete(`/library/${id}`);
@@ -35,7 +38,7 @@ const Library = () => {
     if (data != null || data != undefined) {
       data = data.split("-")
       return data[2].split("T")[0] + "/" + data[1] + "/" + data[0];
-    }else{
+    } else {
       return ("Não definido")
     }
   };
@@ -57,13 +60,19 @@ const Library = () => {
     <div className="container mx-auto px-4">
       {/* Header */}
       <div className="text-center mb-12 animate-fade-in backdrop-blur-xl p-6 rounded-2xl">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">
-          {library.name}
-        </h1>
-        <hr></hr>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto pt-3">
-          {library.city} - {library.state} | {library.country}
-        </p>
+        <div className="content-left">
+          <div onClick={() => { navigate(-1) }} className="w-10 h-10 mx-auto bg-primary/20 rounded-full flex items-center justify-center hover:cursor-pointer">
+            <ArrowLeftIcon></ArrowLeftIcon>
+          </div>
+        </div>
+
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            {library.name}
+          </h1>
+          <hr></hr>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto pt-3">
+            {library.city} - {library.state} | {library.country}
+          </p>
         <div className="flex justify-center items-center mb-4 pt-4"><img className="max-w-full h-auto" src={library.imagePath} /></div>
       </div>
 

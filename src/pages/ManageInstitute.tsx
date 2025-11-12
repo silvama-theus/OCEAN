@@ -33,12 +33,10 @@ interface Institute {
   address: string;
   number: string;
   createdAt: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   InstitutesUsers: any[];
 }
-
-
-
-const ManageInstitute = () => {
+  const ManageInstitute = () => {
   const { id } = useParams();
   //const [user, setUser] = useState<User>();
   
@@ -128,9 +126,7 @@ console.log(response.data)
     //     toast.success("User updated successfully!");
     //   }
     // }
-
-
-
+  
   });
 
  const handleChange = (event) => {
