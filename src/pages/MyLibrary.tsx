@@ -334,10 +334,7 @@ const MyLibrary = () => {
         description: "Please check your data and try again.",
       });
     });
-
-
-
-  };
+   };
   const handleASubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log(selectedLibrary);
@@ -470,7 +467,7 @@ const MyLibrary = () => {
                   {/* Name */}
                   <div className="space-y-2">
                     <Label htmlFor="name">
-                      Nome dos acervos<span className="text-destructive">*</span>
+                      Nome do acervo<span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="name"

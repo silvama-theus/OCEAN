@@ -46,6 +46,7 @@ export function LiveRegion({ className }: LiveRegionProps) {
 	);
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function announce(
 	message: string,
 	priority: "polite" | "assertive" = "polite"
