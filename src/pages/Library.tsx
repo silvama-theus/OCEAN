@@ -60,19 +60,21 @@ const Library = () => {
     <div className="container mx-auto px-4">
       {/* Header */}
       <div className="text-center mb-12 animate-fade-in backdrop-blur-xl p-6 rounded-2xl">
-        <div className="content-left">
-          <div onClick={() => { navigate(-1) }} className="w-10 h-10 mx-auto bg-primary/20 rounded-full flex items-center justify-center hover:cursor-pointer">
-            <ArrowLeftIcon></ArrowLeftIcon>
+        <div className="flex flex-row">
+          <div className="flex-none">
+            <div onClick={() => { navigate(-1) }} className="w-10 h-10 mx-auto bg-primary/20 rounded-full flex items-center justify-center hover:cursor-pointer">
+              <ArrowLeftIcon></ArrowLeftIcon>
+            </div>
           </div>
-        </div>
 
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 pr-10 flex-1">
             {library.name}
           </h1>
-          <hr></hr>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto pt-3">
-            {library.city} - {library.state} | {library.country}
-          </p>
+        </div>
+        <hr></hr>
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto pt-3">
+          {library.city} - {library.state} | {library.country}
+        </p>
         <div className="flex justify-center items-center mb-4 pt-4"><img className="max-w-full h-auto" src={library.imagePath} /></div>
       </div>
 

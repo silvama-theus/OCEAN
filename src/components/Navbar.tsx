@@ -24,7 +24,6 @@ export const Navbar = () => {
     { path: "/artifacts", label: "Artefatos" },
     { path: "/my-library", label: "Meu acervo" },
     { path: "/about", label: "Sobre" },
-    { path: "/dashboard", label: "Painel de controle" },
   ];
 
   return (

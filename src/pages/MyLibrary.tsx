@@ -5,14 +5,14 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Plus, Save, Trash2, Eye, FileDown } from "lucide-react";
+import { Plus, Save, Trash2, Eye, FileDown, CloudUploadIcon } from "lucide-react";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
 import { MultiSelect } from "@/components/multi-select";
 import api from "../services/api";
 import { Dialog } from "radix-ui";
 import { set } from "date-fns";
-import Modal from '@mui/material/Modal';
+import { styled, Button as B } from '@mui/material';
 
 interface Library {
   id: string;
@@ -48,8 +48,21 @@ interface Artifact {
   foundDate: string,
   createdAt: string,
   library: string,
+  image?: File,
+  model3D?: File,
+  external3DLink?: string
 }
-
+const VisuallyHiddenInput = styled('input')({
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(50%)',
+  height: 1,
+  overflow: 'hidden',
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  whiteSpace: 'nowrap',
+  width: 1,
+});
 
 const MyLibrary = () => {
   const [artifacts, setArtifacts] = useState<Artifact[]>([]);
@@ -103,6 +116,7 @@ const MyLibrary = () => {
     tags: "",
     foundDate: "",
     createdAt: "",
+    external3DLink: "",
   });
   useEffect(() => {
     const fetchData = async () => {
@@ -293,6 +307,7 @@ const MyLibrary = () => {
       foundDate: "",
       tags: "",
       createdAt: "",
+      external3DLink: "",
     });
   });
   const handleLSubmit = async (e: React.FormEvent) => {
@@ -338,6 +353,25 @@ const MyLibrary = () => {
 
 
   };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, files } = e.target;
+
+    if (files) {
+      // Arquivos
+      setFormAData(prev => ({
+        ...prev,
+        [name]: files[0],
+      }));
+    } else {
+      // Campos de texto/data
+      setFormAData(prev => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
+  };
+  const [imageAFile, setImageAFile] = useState<File | null>(null);
+  const [modelAFile, setModelAFile] = useState<File | null>(null);
   const handleASubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log(selectedLibrary);
@@ -346,10 +380,11 @@ const MyLibrary = () => {
       ...formAData,
       library: selectedLibrary,
     };
-    await api.post('/artifact', newArtifact, { withCredentials: true }).then((response) => {
+    if (imageAFile) newArtifact.image = imageAFile;
+    if (modelAFile) newArtifact.model3D = modelAFile;
+    await api.post('/artifact', newArtifact, { withCredentials: true, headers: { "Content-Type": "multipart/form-data" } }).then((response) => {
       console.log(response)
       if (response.status === 201 || response.status === 200) {
-        console.log("pum")
         toast.success("Artifact saved successfully!", {
           description: `${formLData.name} has been added to your library.`,
         });
@@ -373,6 +408,7 @@ const MyLibrary = () => {
           foundDate: "",
           tags: "",
           createdAt: "",
+          external3DLink: "",
         });
         setIsFormAOpen(false);
       }
@@ -633,7 +669,7 @@ const MyLibrary = () => {
             <CardHeader>
               <CardTitle>Adicionar novo artefato</CardTitle>
               <CardDescription>
-               Preencha os critérios abaixo para documentar um novo artefato.
+                Preencha os critérios abaixo para documentar um novo artefato.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -766,7 +802,7 @@ const MyLibrary = () => {
                       className="bg-background/50 border-primary/20"
                     />
                   </div>
-                  
+
                 </div>
                 <div className="grid md:grid-cols-3 gap-6 content-center"></div>
 
@@ -830,16 +866,55 @@ const MyLibrary = () => {
                     />
                   </div>
 
-                  {/* Image */}
+                  {/* External 3D model */}
                   <div className="space-y-2 flex items-center justify-center col-span-2">
-                    <Label htmlFor="image" className="pt-2 pr-3">Image</Label>
+                    <Label htmlFor="3dlink" className="pt-2 pr-3">Link para modelo 3D</Label>
                     <Input
-                      id="image"
-                      value={formAData.imagePath}
-                      onChange={(e) => setFormAData({ ...formAData, imagePath: e.target.value })}
-                      placeholder="Adicione o link da imagem"
+                      id="3dlink"
+                      value={formAData.external3DLink}
+                      onChange={(e) => setFormAData({ ...formAData, external3DLink: e.target.value })}
+                      placeholder="Adicione o link para modelo 3D em outro site"
                       className="bg-background/50 border-primary/20"
                     />
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-6 content-center">
+
+                  <div className="space-y-2">
+                    <B
+                      component="label"
+                      role={undefined}
+                      variant="outlined"
+                      tabIndex={-1}
+                      startIcon={<CloudUploadIcon />}
+                    >
+                      Enviar uma imagem
+                      <VisuallyHiddenInput
+                        type="file"
+                        onChange={(e) => e.target.files && setImageAFile(e.target.files[0])}
+                        multiple
+                        id="3dModel"
+                        accept=".png,.jpg,.jpeg,"
+                      />
+                    </B>
+                  </div>
+                  <div className="space-y-2">
+                    <B
+                      component="label"
+                      role={undefined}
+                      variant="outlined"
+                      tabIndex={-1}
+                      startIcon={<CloudUploadIcon />}
+                    >
+                      Enviar um modelo 3D
+                      <VisuallyHiddenInput
+                        type="file"
+                        onChange={(e) => e.target.files && setModelAFile(e.target.files[0])}
+                        multiple
+                        id="3dModel"
+                        accept=".glb,.gltf,.obj,.fbx"
+                      />
+                    </B>
                   </div>
                 </div>
                 <div className="flex gap-3 justify-end">

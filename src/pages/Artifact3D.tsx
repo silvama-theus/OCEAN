@@ -1,4 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
+import { Canvas, useLoader } from "@react-three/fiber";
+import { OrbitControls, Html } from "@react-three/drei";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -51,13 +54,55 @@ interface ArtifactType {
   whoFound?: string;
   Libraries?: Library[];
   tags?: string;
-  model3DPath?: boolean;
-  external3DLink?: string;
+  model3DPath?: string;
 }
+
+interface ModelProps {
+  url: string;
+}
+
+function Model({ url }: ModelProps) {
+  const [gltf, setGltf] = useState<any>(null);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    setGltf(null);
+    setError(false);
+
+    const loader = new GLTFLoader();
+    loader.load(
+      url,
+      (loaded) => setGltf(loaded),
+      undefined,
+      (err) => {
+        setError(true);
+      }
+    );
+  }, [url]);
+
+  if (error) {
+    // Fallback visual em vermelho se o modelo não carregar
+    return (
+      <Html center>
+        <div style={{ color: "red", fontWeight: "bold" }}>Oops! tivemos um pequeno problema ao tentar encontrar o modelo.
+          <br></br>Tente novamente em breve</div>
+      </Html>
+    );
+  }
+
+  if (!gltf) {
+    // Enquanto carrega, não renderiza nada (Suspense vai mostrar loader)
+    return null;
+  }
+
+  return <primitive object={gltf.scene} scale={1} />;
+}
+
 const Artifact = () => {
+  const navigate = useNavigate();
+
   const { id } = useParams();
   const [artifact, setArtifact] = useState<ArtifactType>({} as ArtifactType);
-  const navigate = useNavigate();
 
 
   const getArtifact = async (id: string) => {
@@ -77,23 +122,30 @@ const Artifact = () => {
       <div className="text-center mb-12 animate-fade-in">
         <div className="flex flex-row">
           <div className="flex-none">
-            <div onClick={() => { navigate(-1) }} className="w-10 h-10 mx-auto bg-primary/20 rounded-full flex items-center justify-center hover:cursor-pointer">
+            <div onClick={() => { navigate(-2) }} className="w-10 h-10 mx-auto bg-primary/20 rounded-full flex items-center justify-center hover:cursor-pointer">
               <ArrowLeftIcon></ArrowLeftIcon>
             </div>
           </div>
-
           <h1 className="text-4xl md:text-5xl font-bold mb-4 flex-1 pr-10">
             {artifact.name}
           </h1>
         </div>
       </div>
+      <div className="h-dvh border-4 bg-white bg-clip-content rounded-xl border-dashed p-3">
+        <Suspense fallback={<div style={{ color: "#fff" }}>Carregando modelo...</div>}>
+          <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+            <ambientLight intensity={0.5} />
+            <directionalLight position={[5, 5, 5]} intensity={1} />
+            <Model url={artifact.model3DPath} />
+            <OrbitControls />
 
+          </Canvas>
+        </Suspense>
+      </div>
       <div className="grid grid-flow-col-dense grid-flow-row-dense sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1">
 
         <Card className="p-8" key={artifact.id}>
-          <div className="flex justify-center items-center mb-4"><img className="max-w-full h-auto" src={artifact.imagePath} /></div>
-          {!!artifact.model3DPath && (<div className="mb-3"><Link to={`/artifact/3d/${artifact.id}`}><Button>Ver modelo 3D</Button></Link></div>)}
-          {!!artifact.external3DLink && (<div className="mb-3"><Link target="_blank" to={artifact.external3DLink}><Button>Ver modelo 3D (outro site)</Button></Link></div>)}
+
           <p>{artifact.description}</p>
           <CardDescription className="space-y-2 p-8 text-justify">
             <p><span className="font-bold">Idade: </span>{artifact.age}</p>
@@ -140,12 +192,10 @@ const Artifact = () => {
               </Link>
             }
             )}
-
           </div>
         </Card>
-
       </div>
     </div>
-  </div>;
+  </div >;
 };
 export default Artifact;

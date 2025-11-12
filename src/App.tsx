@@ -8,6 +8,7 @@ import { Footer } from "./components/Footer";
 import Home from "./pages/Home";
 import Artifacts from "./pages/Artifacts";
 import Artifact from "./pages/Artifact";
+import Artifact3D from "./pages/Artifact3D";
 import Libraries from "./pages/Libraries";
 import MyLibrary from "./pages/MyLibrary";
 import About from "./pages/About";
@@ -15,9 +16,6 @@ import Auth from "./pages/Auth";
 import Library from "./pages/Library";
 import NotFound from "./pages/NotFound";
 import PrivateRoute from "./routes/PrivateRoute";
-import Dashboard from "./pages/Dashboard";
-import ManageInstitutes from "./pages/manageInstitutes";
-import ManageInstitute from "./pages/ManageInstitute";
 
 const queryClient = new QueryClient();
 
@@ -39,11 +37,8 @@ const App = () => (
               <Route path="/my-library" element={<PrivateRoute><MyLibrary /></PrivateRoute>} />
               <Route path="/about" element={<About />} />
               <Route path="/auth" element={<Auth />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/dashboard/institutes" element={<ManageInstitutes />} />
-              <Route path="/dashboard/institute/:id" element={<ManageInstitute />} />
-              <Route path="/dashboard/libraries" element={<Dashboard />} />
-              <Route path="/dashboard/library/:id" element={<Dashboard />} />
+              <Route path="/artifact/3d/:id" element={<Artifact3D />} />
+
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
