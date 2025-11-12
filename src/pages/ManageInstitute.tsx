@@ -75,6 +75,7 @@ const ManageInstitute = () => {
 
   useEffect(() => {
     const fetchData = async (id: string) => {
+      
       const response = await api.get(`institute/${id}`, { withCredentials: true });
       setInstitute({
         id: response.data.id,
